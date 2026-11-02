@@ -1,0 +1,127 @@
+{
+  "$comment": "Researched vehicle data for the Selected Work showroom. STATUS: first-year sales were dropped from the site on 2026-11-01 (PRD 5.2.4, Q13) - sales fields below are a research record only and must not be surfaced. Launch years remain in use. Every figure is sourced in vehicle-data.md. null means no reliable public figure was found - do not substitute an estimate.",
+  "generated": "2026-11-01",
+  "unit": "vehicles",
+  "salesBasis": "First full fiscal year of sales, April-March (Indian FY), domestic unless noted",
+  "vehicles": [
+    {
+      "id": "mahindra-maxx",
+      "name": "Mahindra Maxx",
+      "oem": "Mahindra & Mahindra",
+      "type": "MUV · 9/10-seat station wagon",
+      "launchYear": 2001,
+      "launchDate": null,
+      "launchYearSales": null,
+      "salesBasis": null,
+      "confidence": {
+        "launchYear": "medium",
+        "sales": "none"
+      },
+      "notes": "Launched 2001 in nine- or ten-seat station wagon form; replaced the Mahindra Armada. Later sold as a pickup (Bolero Maxx Pik-Up is a different, 2022 nameplate - do not conflate).",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Mahindra_Maxx"
+      ]
+    },
+    {
+      "id": "bolero-xl",
+      "name": "Bolero XL",
+      "oem": "Mahindra & Mahindra",
+      "type": "SUV · 9/10-seat, taxi-oriented",
+      "launchYear": 2001,
+      "launchDate": null,
+      "launchYearSales": null,
+      "salesBasis": null,
+      "confidence": {
+        "launchYear": "medium",
+        "sales": "none"
+      },
+      "notes": "Bolero nameplate launched 2000 (April 2000 per Times Now; 4 Aug 2000 per other reports). The XL variant, aimed at the taxi segment with a 9/10-seat layout, appears from 2001 - CarDekho catalogues it as 'Bolero 2001-2010 XL 9 Seater'. Sales were never split out from the Bolero total.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Mahindra_Bolero",
+        "https://www.cardekho.com/overview/Mahindra_Bolero_2001-2010/Mahindra_Bolero_2001-2010_XL_9_Seater_Non_AC.htm",
+        "https://www.timesnownews.com/auto/car-news/mahindra-boleros-evolution-25-year-journey-of-the-peoples-suv-article-152963293"
+      ]
+    },
+    {
+      "id": "xylo",
+      "name": "Xylo",
+      "oem": "Mahindra & Mahindra",
+      "type": "Compact MPV",
+      "launchYear": 2009,
+      "launchDate": "2009-01-13",
+      "launchYearSales": 27978,
+      "salesBasis": "FY2009-10 (Apr 2009 - Mar 2010), first full fiscal year",
+      "confidence": {
+        "launchYear": "high",
+        "sales": "high"
+      },
+      "notes": "Launched 13 Jan 2009 at Nashik; retail sales began March 2009. 3,171 units in the first full month (Mar 2009); 15,000+ in the first six months; 7,800 units in June 2009 alone. FY2009-10 closed at 27,978 units, against 32,062 in FY2010-11. Production 2009-2019.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Mahindra_Xylo",
+        "https://www.goaonwheels.com/mahindra-xylo-sells-over-32000-units",
+        "https://web.archive.org/web/20130325212222/http://www.dnaindia.com/money/report_m-and-m-net-soars-152pct-as-xylo-picks-up-speed_1278579"
+      ]
+    },
+    {
+      "id": "maxximo",
+      "name": "Maxximo",
+      "oem": "Mahindra & Mahindra",
+      "type": "LCV · mini truck, 0.85-0.9 t",
+      "launchYear": 2010,
+      "launchDate": "2010-02-03",
+      "launchYearSales": null,
+      "salesBasis": null,
+      "confidence": {
+        "launchYear": "high",
+        "sales": "none"
+      },
+      "notes": "Greenfield programme: unveiled at Auto Expo 2010, commercially launched 3 Feb 2010, and the first product built at Mahindra's Chakan plant. Launch production 2,000 units/month, scalable to 3,000. Crossed 100,000 domestic units by 2013 and 240,000 across the platform in five years (2015). No first-year figure published. Discontinued 2015.",
+      "sources": [
+        "https://www.theautochannel.com/news/2010/02/04/464610.html",
+        "https://www.autocarpro.in/news-national/mahindra-maxximo-mini-truck-sells-240-units-8005",
+        "https://en.wikipedia.org/wiki/Mahindra_Maxximo"
+      ]
+    },
+    {
+      "id": "jeeto",
+      "name": "Mahindra Jeeto",
+      "oem": "Mahindra & Mahindra",
+      "type": "LCV · mini truck, sub-1 t",
+      "launchYear": 2015,
+      "launchDate": "2015-06-23",
+      "launchYearSales": 20569,
+      "salesBasis": "FY2015-16 (Apr 2015 - Mar 2016), first year of sales",
+      "confidence": {
+        "launchYear": "high",
+        "sales": "high"
+      },
+      "notes": "Launched 23 June 2015 as a modular range of 8 mini-trucks; built at Zaheerabad. Sold a little over 20,569 units in FY2015-16, beating the Tata Ace on price in its first year. 100,000 Jeeto Load units by 2019; 200,000 platform units by 2022.",
+      "sources": [
+        "https://www.autocarpro.in/news-national/-mahindra-jeeto-mini-truck-sells-unit-months-25103",
+        "https://en.wikipedia.org/wiki/Mahindra_Jeeto",
+        "https://www.mahindra.com/news-room/press-release/en/mahindra-introduces-new-and-advanced-variant-jeeto-plus-to-its-mini-truck-range",
+        "https://www.autocarpro.in/news-national/mahindra-jeeto-sales-cross-200-000-units-103091"
+      ]
+    },
+    {
+      "id": "tata-signa",
+      "name": "Tata Signa",
+      "oem": "Tata Motors",
+      "type": "MHCV · tipper / tractor / truck",
+      "launchYear": 2016,
+      "launchDate": "2016-02-05",
+      "launchYearSales": null,
+      "salesBasis": null,
+      "confidence": {
+        "launchYear": "high",
+        "sales": "none"
+      },
+      "notes": "Signa range unveiled at SIAM Auto Expo 2016 (Feb 2016) with the 4923.S tractor, 3118.T multi-axle truck and 2518.K tipper; commercial launch announced Sept 2016. The supplied asset shows a Signa 4825.TK, a later variant (c. 2020) - confirm which one the project entry should describe. Tata does not publish model-level sales.",
+      "sources": [
+        "https://www.automotive-fleet.com/news/tata-launches-signa-commercial-vehicles",
+        "https://www.automotiveworld.com/news/tata-motors-launches-new-signa-range-commercial-vehicles",
+        "https://auto.economictimes.indiatimes.com/news/tata-motors-launches-new-signa-range-of-mhcvs/54374944"
+      ]
+    }
+  ]
+}

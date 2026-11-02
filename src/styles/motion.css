@@ -1,0 +1,68 @@
+@layer motion {
+  /* The reveal states are applied by GSAP only when JavaScript runs, so the
+     page renders complete and readable without it. */
+
+  .spine {
+    transform-origin: top center;
+  }
+
+  html.is-loaded .spine {
+    will-change: transform;
+  }
+
+  .hero__portrait {
+    transform-origin: bottom center;
+  }
+
+  /* Set only when the intro chunk is loading. It is removed in the same tick
+     that GSAP applies the real start states. */
+  .intro-pending .hero__word,
+  .intro-pending .hero__portrait,
+  .intro-pending .hero__caption > * {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .strip__item,
+    .strip__item img,
+    .strip__pool,
+    .strip__item::after,
+    .strip__tick,
+    .media__item,
+    .hero__portrait img,
+    .contact__portrait img,
+    .btn,
+    .link-arrow,
+    .nav,
+    .nav__link,
+    .nav__resume,
+    .nav__toggle-bar,
+    .skip-link {
+      transition: none;
+    }
+
+    .strip__item {
+      opacity: 1;
+    }
+
+    .strip__item.is-active {
+      transform: none;
+    }
+
+    .strip__item.is-active img,
+    .strip__item:hover img,
+    .strip__item:focus-visible img {
+      transform: none;
+    }
+
+    .media__item {
+      transition: none;
+    }
+
+    .stage__slide,
+    .stage__media,
+    .stage__canvas {
+      transition-duration: 0.15s;
+    }
+  }
+}

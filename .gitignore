@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.DS_Store
+*.local
+.vite/
+
+# Scratch scans and unused 3D experiments stay local; the site ships from PNGs.
+Assets/3D Assets/

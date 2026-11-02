@@ -1,0 +1,39 @@
+{
+  "images": {
+    "portrait": {
+      "source": "Assets/Prashant-Navsariwala.png",
+      "base": "portrait",
+      "widths": [420, 699]
+    },
+    "maxx": {
+      "source": "Assets/Mahindra-maxx.png",
+      "base": "maxx",
+      "widths": [420, 800]
+    },
+    "bolero": {
+      "source": "Assets/Bolero-XL.png",
+      "base": "bolero",
+      "widths": [420, 800, 1024]
+    },
+    "xylo": {
+      "source": "Assets/Xylo.png",
+      "base": "xylo",
+      "widths": [420, 800, 1024]
+    },
+    "maxximo": {
+      "source": "Assets/Maxximo.png",
+      "base": "maxximo",
+      "widths": [420, 800, 1024]
+    },
+    "jeeto": {
+      "source": "Assets/Jeeto.png",
+      "base": "jeeto",
+      "widths": [420, 800, 1024]
+    },
+    "signa": {
+      "source": "Assets/Tata-Signa.png",
+      "base": "signa",
+      "widths": [420, 800, 1045]
+    }
+  }
+}

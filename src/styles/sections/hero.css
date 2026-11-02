@@ -1,0 +1,214 @@
+@layer sections {
+  .hero {
+    --hero-split: clamp(1.5rem, 12vw, 12rem);
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    padding-top: calc(var(--nav-h) + 8px);
+    overflow: clip;
+  }
+
+  .hero__inner {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: calc(var(--wrap) + var(--pad) * 2);
+    margin-inline: auto;
+    padding-inline: var(--pad);
+  }
+
+  .hero__stage {
+    position: relative;
+    flex: 1;
+    min-height: clamp(480px, 64svh, 760px);
+  }
+
+  .hero__word {
+    position: absolute;
+    inset-inline: 0;
+    top: 26%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--fs-display);
+    line-height: 0.74;
+    letter-spacing: -0.035em;
+    white-space: nowrap;
+    color: var(--ink);
+    user-select: none;
+  }
+
+  /* The wordmark is already split without JavaScript. The intro animation opens
+     the gap from zero; hover never depends on it. */
+  .hero__word-part {
+    display: block;
+    will-change: transform;
+    transform: translateX(calc(var(--hero-split) * -1));
+  }
+
+  .hero__word-part[data-word-part='trail'] {
+    transform: translateX(var(--hero-split));
+  }
+
+  .hero__portrait {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    margin-inline: auto;
+    width: max-content;
+    height: 94%;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .hero__portrait picture {
+    display: contents;
+  }
+
+  .hero__portrait img {
+    height: 100%;
+    width: auto;
+    max-width: none;
+    object-fit: contain;
+    object-position: bottom center;
+    filter: grayscale(1);
+    transition: filter 600ms var(--ease);
+  }
+
+  @media (hover: hover) {
+    .hero__portrait:hover img {
+      filter: grayscale(0);
+    }
+  }
+
+  @media (hover: none) {
+    .hero__portrait:active img {
+      filter: grayscale(0);
+    }
+  }
+
+  .hero__caption {
+    position: absolute;
+    left: var(--pad);
+    bottom: clamp(28px, 6vh, 64px);
+    z-index: 3;
+    display: grid;
+    justify-items: start;
+    max-width: 20rem;
+  }
+
+  .hero__role {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.35rem, 1.8vw, 1.6rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .hero__meta {
+    display: grid;
+    gap: 2px;
+    margin-top: 16px;
+    font-size: var(--fs-small);
+    line-height: 1.45;
+    color: var(--ink-60);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .hero__actions .btn {
+    padding: 0.74rem 1.1rem;
+    font-size: 0.8125rem;
+  }
+
+  /* Below the desktop composition the caption sits under the portrait, so the
+     copy never collides with the figure at narrow widths. */
+  @media (max-width: 1023px) {
+    .hero {
+      min-height: 100svh;
+    }
+
+    .hero__stage {
+      flex: 1;
+      min-height: 54svh;
+    }
+
+    .hero__word {
+      top: 28%;
+    }
+
+    .hero__portrait {
+      height: 90%;
+    }
+
+    .hero__caption {
+      position: static;
+      max-width: none;
+      padding-block: 24px 30px;
+    }
+
+    .hero__role {
+      font-size: clamp(1.4rem, 3.6vw, 1.75rem);
+    }
+
+    .hero__meta {
+      margin-top: 12px;
+    }
+
+    .hero__actions {
+      margin-top: 18px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      /* Keep both halves inside the viewport where the word nearly fills it. */
+      --hero-split: 9vw;
+    }
+
+    .hero__portrait {
+      height: 92%;
+    }
+
+    .hero__word {
+      top: 28%;
+    }
+
+    .hero__caption {
+      padding-top: 20px;
+      padding-bottom: 26px;
+    }
+
+    .hero__actions {
+      gap: 8px;
+    }
+
+    .hero__actions .btn {
+      padding: 0.68rem 0.95rem;
+      font-size: 0.78rem;
+    }
+  }
+
+  /* The smallest screens need a smaller wordmark so neither half is cropped. */
+  @media (max-width: 360px) {
+    .hero {
+      --hero-split: 6vw;
+    }
+
+    .hero__word {
+      font-size: clamp(2.75rem, 17vw, 3.75rem);
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@layer tokens {
+  :root {
+    /* palette — three values only */
+    --bg: #ffffff;
+    --surface: #d9d9d9;
+    --ink: #000000;
+    --ink-60: rgb(0 0 0 / 0.6);
+    --ink-30: rgb(0 0 0 / 0.3);
+    --focus: #000000;
+
+    /* type */
+    --font-display: 'Instrument Serif', 'Times New Roman', Times, serif;
+    --font-sans: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+    --fs-display: clamp(4.25rem, 19vw, 18rem);
+    --fs-h1: clamp(2.6rem, 4.4vw, 4.5rem);
+    --fs-h2: clamp(1.85rem, 3.2vw, 2.5rem);
+    --fs-body: clamp(1.0625rem, 1rem + 0.35vw, 1.125rem);
+    --fs-small: 0.875rem;
+    --fs-eyebrow: 0.8125rem;
+
+    /* layout */
+    --nav-h: 64px;
+    --wrap: 1280px;
+    --pad: clamp(20px, 3.4vw, 48px);
+    --section-y: clamp(96px, 11vw, 160px);
+    --gap: clamp(24px, 3vw, 48px);
+
+    /* motion */
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}

@@ -1,0 +1,191 @@
+@layer sections {
+  .career__grid {
+    display: grid;
+    grid-template-columns: 45% minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(32px, 5vw, 80px);
+    margin-top: clamp(40px, 6vw, 80px);
+  }
+
+  .career__media {
+    position: sticky;
+    top: calc(var(--nav-h) + 32px);
+  }
+
+  .media__frame {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    width: 100%;
+    max-width: calc((100svh - 192px) * 1.5);
+    background: var(--surface);
+    overflow: hidden;
+  }
+
+  .media__item {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .media__item.is-active {
+    opacity: 1;
+  }
+
+  .media__img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .media__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .media__caption {
+    margin-top: 14px;
+    font-size: var(--fs-small);
+    color: var(--ink-60);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .career__timeline {
+    position: relative;
+    padding-left: clamp(28px, 3vw, 44px);
+    padding-block: 4px;
+  }
+
+  .spine-rule {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--ink-30);
+  }
+
+  .spine {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .spine path {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 1;
+  }
+
+  .roles {
+    display: grid;
+    gap: clamp(40px, 5vw, 64px);
+  }
+
+  .role {
+    position: relative;
+    max-width: 62ch;
+  }
+
+  .role::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * clamp(28px, 3vw, 44px) - 4px);
+    top: 7px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ink);
+  }
+
+  .role__dates {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-60);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .role__tenure {
+    color: var(--ink-60);
+    letter-spacing: 0.02em;
+    text-transform: none;
+    font-weight: 400;
+  }
+
+  .role__title {
+    margin-top: 10px;
+    font-family: var(--font-sans);
+    font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  .role__org {
+    margin-top: 6px;
+    font-size: 0.9375rem;
+    color: var(--ink-60);
+  }
+
+  .role__summary {
+    margin-top: 14px;
+    font-size: 1rem;
+    line-height: 1.55;
+    max-width: 54ch;
+  }
+
+  .role__media {
+    display: none;
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--surface);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .role__media .plate {
+    position: absolute;
+  }
+
+  @media (max-width: 899px) {
+    .career__grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .career__media {
+      display: none;
+    }
+
+    .role__media {
+      display: block;
+    }
+
+    .media__frame {
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .career__timeline {
+      padding-left: 24px;
+    }
+
+    .role::before {
+      left: -28px;
+    }
+
+    .role__summary {
+      font-size: 0.9375rem;
+    }
+  }
+}
