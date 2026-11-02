@@ -7,16 +7,14 @@ import Lenis from 'lenis'
  * Every animation is additive: the document is already complete without it.
  */
 export function initMotion() {
-  // Drop the pre-JS hiding rule in the same tick that GSAP applies its own
-  // start states, so nothing flashes and `.from` reads the natural end values.
-  document.documentElement.classList.remove('intro-pending')
-
   gsap.registerPlugin(ScrollTrigger)
+
+  // Anchor jumps land the section flush under the fixed header.
+  const navHeight = document.querySelector<HTMLElement>('.nav')?.offsetHeight ?? 64
 
   const lenis = new Lenis({
     lerp: 0.1,
     smoothWheel: true,
-    anchors: { offset: -(64 + 12) },
   })
 
   lenis.on('scroll', ScrollTrigger.update)
@@ -25,7 +23,7 @@ export function initMotion() {
   })
   gsap.ticker.lagSmoothing(0)
 
-  introSequence()
+  initAnchors(lenis, navHeight)
   heroParallax()
   reveals()
   spine()
@@ -37,34 +35,44 @@ export function initMotion() {
   return lenis
 }
 
-function introSequence() {
-  const word = document.querySelector<HTMLElement>('.hero__word')
-  const lead = document.querySelector<HTMLElement>('[data-word-part="lead"]')
-  const trail = document.querySelector<HTMLElement>('[data-word-part="trail"]')
-  if (!word || !lead || !trail) return
+/**
+ * One anchor handler, one offset. Lenis's built-in anchor option subtracts the
+ * page's scroll-padding and the configured offset twice, and the browser still
+ * performs its own hash jump on top. Taking over the click keeps the target
+ * exactly under the fixed header.
+ */
+function initAnchors(lenis: Lenis, navHeight: number) {
+  document.addEventListener(
+    'click',
+    (event) => {
+      if (event.defaultPrevented) return
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
 
-  // The final split lives in CSS so it works without JavaScript. Read the two
-  // half offsets first, then join the word for the opening title moment.
-  const leadX = parseFloat(String(gsap.getProperty(lead, 'x')))
-  const trailX = parseFloat(String(gsap.getProperty(trail, 'x')))
-  const rect = word.getBoundingClientRect()
-  const centreOffset = window.innerHeight / 2 - (rect.top + rect.height / 2)
+      const element = event.target
+      if (!(element instanceof Element)) return
 
-  gsap.set(word, { y: centreOffset, autoAlpha: 0 })
-  gsap.set([lead, trail], { x: 0 })
+      const link = element.closest<HTMLAnchorElement>('a[href^="#"]')
+      if (!link || link.classList.contains('skip-link')) return
 
-  const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } })
+      const hash = link.getAttribute('href')
+      if (!hash || hash === '#') return
 
-  timeline
-    // 1. The whole word fades in at the centre of the viewport.
-    .to(word, { autoAlpha: 1, duration: 0.65, ease: 'power2.out' }, 0)
-    // 2. The portrait fades in front of it.
-    .from('.hero__portrait', { autoAlpha: 0, scale: 1.04, duration: 0.85 }, 0.55)
-    // 3. The word parts and settles behind the portrait.
-    .to(word, { y: 0, duration: 1.15, ease: 'power3.inOut' }, 1.3)
-    .to(lead, { x: leadX, duration: 1.15, ease: 'power3.inOut' }, 1.3)
-    .to(trail, { x: trailX, duration: 1.15, ease: 'power3.inOut' }, 1.3)
-    .from('.hero__caption > *', { autoAlpha: 0, y: 8, duration: 0.8, stagger: 0.08 }, 2.2)
+      const section = document.querySelector<HTMLElement>(hash)
+      if (!section) return
+
+      event.preventDefault()
+
+      const top = Math.max(0, section.getBoundingClientRect().top + window.scrollY - navHeight)
+      lenis.scrollTo(top)
+
+      try {
+        history.pushState(null, '', hash)
+      } catch {
+        // A file:// preview cannot rewrite history; scrolling still works.
+      }
+    },
+    { passive: false },
+  )
 }
 
 function heroParallax() {
@@ -89,52 +97,56 @@ function heroParallax() {
 }
 
 function reveals() {
-  gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((element) => {
-    gsap.set(element, { autoAlpha: 0, y: 24 })
-    ScrollTrigger.create({
-      trigger: element,
-      start: 'top 85%',
-      once: true,
-      onEnter: () => {
-        gsap.to(element, {
+  const singles = gsap.utils.toArray<HTMLElement>('[data-reveal]')
+  const groups = gsap.utils.toArray<HTMLElement>('[data-reveal-group]')
+  const all = [
+    ...singles,
+    ...groups.flatMap((group) => Array.from(group.children) as HTMLElement[]),
+  ]
+
+  // IntersectionObserver (rather than a scroll listener) is what makes an
+  // anchor jump reliable: the target section intersects immediately after the
+  // jump, so its content reveals even if the visitor never scrolls through the
+  // sections in between.
+  if (!('IntersectionObserver' in window)) {
+    gsap.set(all, { autoAlpha: 1, y: 0 })
+    return
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        const target = entry.target as HTMLElement
+        observer.unobserve(target)
+
+        const children = target.hasAttribute('data-reveal-group')
+          ? (Array.from(target.children) as HTMLElement[])
+          : null
+
+        gsap.to(children ?? target, {
           autoAlpha: 1,
           y: 0,
           duration: 0.6,
           ease: 'power3.out',
+          stagger: children && children.length > 1 ? 0.06 : 0,
           overwrite: true,
         })
-      },
-    })
+      })
+    },
+    { threshold: 0.15 },
+  )
+
+  singles.forEach((element) => {
+    gsap.set(element, { autoAlpha: 0, y: 24 })
+    observer.observe(element)
   })
 
-  gsap.utils.toArray<HTMLElement>('[data-reveal-group]').forEach((group) => {
+  groups.forEach((group) => {
     const children = Array.from(group.children) as HTMLElement[]
     if (!children.length) return
-    const stagger = Math.min(5, children.length)
     gsap.set(children, { autoAlpha: 0, y: 24 })
-    ScrollTrigger.create({
-      trigger: group,
-      start: 'top 85%',
-      once: true,
-      onEnter: () => {
-        gsap.to(children, {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.6,
-          ease: 'power3.out',
-          stagger: stagger > 1 ? 0.06 : 0,
-          overwrite: true,
-        })
-      },
-    })
-  })
-
-  gsap.from('.contact__title', {
-    autoAlpha: 0,
-    y: 40,
-    duration: 0.8,
-    ease: 'power3.out',
-    scrollTrigger: { trigger: '.contact__title', start: 'top 85%', once: true },
+    observer.observe(group)
   })
 }
 

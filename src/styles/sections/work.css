@@ -1,6 +1,9 @@
 @layer sections {
   .work {
-    padding-top: var(--section-y);
+    min-height: calc(100svh - var(--nav-h));
+    display: flex;
+    flex-direction: column;
+    padding-top: clamp(24px, 4svh, 56px);
     padding-bottom: 0;
   }
 
@@ -9,22 +12,23 @@
     align-items: flex-end;
     justify-content: space-between;
     gap: 32px;
+    flex: 0 0 auto;
   }
 
   .work__intro {
     display: grid;
-    gap: 18px;
+    gap: 10px;
     max-width: 760px;
   }
 
   .work__intro h2 {
-    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    font-size: clamp(2.1rem, 3.4vw, 3.1rem);
     line-height: 0.98;
   }
 
   .work__note {
-    max-width: 52ch;
-    font-size: 1rem;
+    max-width: 58ch;
+    font-size: 0.9375rem;
     color: var(--ink-60);
   }
 
@@ -50,20 +54,29 @@
   .work__body {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
-    align-items: center;
+    align-items: stretch;
     gap: clamp(28px, 4.5vw, 72px);
-    margin-top: clamp(32px, 5vw, 64px);
+    margin-top: clamp(16px, 2.4vw, 32px);
+    flex: 1 1 0;
+    min-height: 0;
   }
 
   /* stage ---------------------------------------------------------- */
 
   .stage {
     min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
   }
 
   .stage__frame {
     position: relative;
-    aspect-ratio: 16 / 10;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
     display: grid;
     place-items: center;
   }
@@ -82,10 +95,9 @@
   }
 
   .stage__media {
-    position: relative;
+    position: absolute;
+    inset: 0;
     z-index: 1;
-    width: 100%;
-    height: 100%;
     display: grid;
     place-items: center;
     transition: opacity 0.22s ease;
@@ -95,6 +107,7 @@
     grid-area: 1 / 1;
     width: 100%;
     height: 100%;
+    min-height: 0;
     display: grid;
     place-items: center;
     opacity: 0;
@@ -109,16 +122,17 @@
   .stage__picture {
     width: 100%;
     height: 100%;
-    display: grid;
-    place-items: center;
+    min-height: 0;
+    display: block;
   }
 
   .stage__picture img {
-    max-width: 94%;
-    max-height: 88%;
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
     object-fit: contain;
+    padding: 1% 2%;
   }
 
   .stage__canvas {
@@ -238,7 +252,8 @@
   /* strip ---------------------------------------------------------- */
 
   .work__strip {
-    margin-top: clamp(40px, 6vw, 72px);
+    flex: 0 0 auto;
+    margin-top: clamp(16px, 2.4vw, 32px);
     background: var(--surface);
     border-block: 1px solid var(--ink-30);
     overflow: hidden;
@@ -252,7 +267,7 @@
     max-width: calc(var(--wrap) + var(--pad) * 2);
     margin-inline: auto;
     padding-inline: var(--pad);
-    height: clamp(120px, 14vw, 156px);
+    height: clamp(104px, 11vw, 132px);
   }
 
   .strip__item {
@@ -375,13 +390,77 @@
 
   /* responsive ----------------------------------------------------- */
 
+  /* Short laptop screens: trade a little chrome for stage height so the
+     vehicles and the strip stay in one view. */
+  @media (min-width: 1024px) and (max-height: 820px) {
+    .work {
+      padding-top: 20px;
+    }
+
+    .work__intro h2 {
+      font-size: 2.2rem;
+    }
+
+    .work__note {
+      max-width: 72ch;
+      font-size: 0.875rem;
+    }
+
+    .work__body {
+      margin-top: 12px;
+    }
+
+    .work__strip {
+      margin-top: 12px;
+    }
+
+    .strip {
+      height: 104px;
+    }
+
+    .spec__name {
+      margin-top: 14px;
+      font-size: 1.9rem;
+    }
+
+    .spec__year {
+      margin-top: 14px;
+    }
+
+    .spec__rule {
+      margin-block: 16px;
+    }
+
+    .spec__review {
+      font-size: 0.9375rem;
+    }
+  }
+
   @media (max-width: 1023px) {
+    /* Stacked layouts scroll naturally: a showroom cannot fit under the header
+       on a phone without shrinking the vehicles to thumbnails. */
+    .work {
+      min-height: auto;
+      padding-top: var(--section-y);
+    }
+
     .work__body {
       grid-template-columns: minmax(0, 1fr);
+      flex: none;
+      margin-top: clamp(32px, 5vw, 64px);
+    }
+
+    .stage {
+      display: block;
     }
 
     .stage__frame {
       aspect-ratio: 4 / 3;
+      height: auto;
+    }
+
+    .work__strip {
+      margin-top: clamp(40px, 6vw, 72px);
     }
 
     .spec {
@@ -444,6 +523,73 @@
 
     .strip__tick {
       width: 24px;
+    }
+  }
+
+  /* Small laptops and tablets: keep the stacked showroom, but let the stage
+     flex so the head, spec and strip all stay inside one viewport. */
+  @media (min-width: 600px) and (max-width: 1023px) {
+    .work {
+      min-height: calc(100svh - var(--nav-h));
+      display: flex;
+      flex-direction: column;
+      padding-top: clamp(20px, 3svh, 40px);
+      padding-bottom: 0;
+    }
+
+    .work__head {
+      flex-wrap: nowrap;
+      align-items: flex-end;
+    }
+
+    .work__body {
+      flex: 1 1 0;
+      min-height: 0;
+      margin-top: 16px;
+      gap: 14px;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: minmax(0, 1fr) auto;
+    }
+
+    .stage {
+      display: flex;
+      min-height: 0;
+    }
+
+    .stage__frame {
+      aspect-ratio: auto;
+      height: 100%;
+    }
+
+    .spec {
+      max-width: none;
+      padding-top: 14px;
+    }
+
+    .spec__name {
+      margin-top: 10px;
+      font-size: 1.6rem;
+    }
+
+    .spec__type {
+      margin-top: 8px;
+    }
+
+    .spec__year {
+      margin-top: 12px;
+    }
+
+    .spec__rule {
+      margin-block: 12px;
+    }
+
+    .spec__review {
+      font-size: 0.9375rem;
+      max-width: 70ch;
+    }
+
+    .work__strip {
+      margin-top: 16px;
     }
   }
 }

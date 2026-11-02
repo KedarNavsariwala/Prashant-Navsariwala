@@ -2,7 +2,7 @@ import { roles } from './content'
 
 /**
  * Career media: whichever role card crosses the middle of the viewport owns the
- * sticky pane. Opacity only — the pane itself never moves.
+ * sticky pane. Opacity only; the pane itself never moves.
  */
 export function initCareer() {
   const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-role]'))

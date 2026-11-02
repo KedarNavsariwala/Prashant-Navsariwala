@@ -59,9 +59,9 @@ Changing a source image or `media.config.json` means running `npm run media`
 
 - Motion is an enhancement. `prefers-reduced-motion: reduce` skips the motion
   chunk entirely and shows the finished composition.
-- With JavaScript disabled the page is complete: the hero wordmark is already
-  split in CSS, the mobile menu is a native `<details>`, and every section is
-  present in the static HTML.
+- With JavaScript disabled the page is complete: the hero wordmark is set in
+  CSS exactly as it renders, the mobile menu is a native `<details>`, and every
+  section is present in the static HTML.
 - The showroom is a roving-tabindex listbox: arrow keys change the selected
   vehicle, Enter moves focus to the detail panel, and the panel is announced
   through `aria-live="polite"`.

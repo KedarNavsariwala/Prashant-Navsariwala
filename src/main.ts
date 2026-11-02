@@ -5,6 +5,7 @@ import './styles/main.css'
 
 import { initCareer } from './career'
 import { initNav } from './nav'
+import { initPatent } from './patent'
 import { initShowroom } from './showroom/showroom'
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -12,15 +13,10 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matc
 initNav()
 initShowroom(reducedMotion)
 initCareer()
+initPatent(reducedMotion)
 
 if (!reducedMotion) {
-  // Hold the hero back until the intro chunk has applied its start states; if
-  // the chunk fails, the catch reveals the finished page instead.
-  document.documentElement.classList.add('intro-pending')
-
-  void import('./motion/motion')
-    .then(({ initMotion }) => initMotion())
-    .catch(() => document.documentElement.classList.remove('intro-pending'))
+  void import('./motion/motion').then(({ initMotion }) => initMotion())
 }
 
 document.documentElement.classList.add('is-loaded')

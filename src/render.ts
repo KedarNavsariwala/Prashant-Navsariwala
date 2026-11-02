@@ -1,7 +1,6 @@
 import {
   about,
   career,
-  contact,
   credentials,
   footer,
   hero,
@@ -38,6 +37,7 @@ const dims: Record<ImageKey, Dims> = {
   maxximo: { width: 1024, height: 768 },
   jeeto: { width: 1024, height: 768 },
   signa: { width: 1045, height: 784 },
+  patent: { width: 1408, height: 768 },
 }
 
 type PictureOptions = {
@@ -186,7 +186,7 @@ function renderHeader() {
 
         <nav class="nav__links" aria-label="Primary">
           ${primary}
-          <a class="nav__resume" href="${site.resume}" download type="application/pdf">${nav.resumeLabel} <span aria-hidden="true">↗</span></a>
+          <a class="nav__link nav__link--external" href="${site.linkedin}" target="_blank" rel="me noopener">${esc(nav.linkedinLabel)} <span aria-hidden="true">↗</span></a>
         </nav>
 
         <details class="nav__menu">
@@ -199,8 +199,7 @@ function renderHeader() {
               ${mobile}
             </nav>
             <div class="menu__foot">
-              <a class="menu__resume" href="${site.resume}" download type="application/pdf">${nav.resumeLabel} <span aria-hidden="true">↗</span></a>
-              <p>${esc(site.location)}</p>
+              <a class="menu__linkedin" href="${site.linkedin}" target="_blank" rel="me noopener">${esc(footer.linkLabel)} <span aria-hidden="true">↗</span></a>
             </div>
           </div>
         </details>
@@ -376,6 +375,25 @@ function renderWork() {
 /* career                                                              */
 /* ------------------------------------------------------------------ */
 
+function renderSubroles(role: Role) {
+  if (!role.children?.length) return ''
+  return `<div class="role__subroles">
+          <p class="role__subroles-label">Roles within this tenure</p>
+          <ol class="subroles">
+            ${role.children
+              .map(
+                (child) => `<li class="subrole">
+              <p class="subrole__dates">${esc(child.dates)}${child.tenure ? ` <span class="role__tenure">${esc(child.tenure)}</span>` : ''}</p>
+              <h4 class="subrole__title">${esc(child.title)}</h4>
+              ${child.location ? `<p class="subrole__location">${esc(child.location)}</p>` : ''}
+              <p class="subrole__summary">${esc(child.summary)}</p>
+            </li>`,
+              )
+              .join('')}
+          </ol>
+        </div>`
+}
+
 function renderCareer() {
   const mediaItems = roles
     .map(
@@ -393,6 +411,7 @@ function renderCareer() {
         <h3 class="role__title">${esc(role.title)}</h3>
         <p class="role__org">${esc(role.org)}${role.location ? ` <span class="role__location">· ${esc(role.location)}</span>` : ''}</p>
         <p class="role__summary">${esc(role.summary)}</p>
+        ${renderSubroles(role)}
       </li>`,
     )
     .join('')
@@ -406,7 +425,7 @@ function renderCareer() {
         </div>
 
         <div class="career__grid">
-          <div class="career__media" data-career-media>
+          <div class="career__media" data-career-media aria-hidden="true">
             <div class="media__frame">
               ${mediaItems}
             </div>
@@ -428,20 +447,30 @@ function renderCareer() {
 }
 
 /* ------------------------------------------------------------------ */
-/* patent, credentials, contact                                        */
+/* patent, credentials, footer                                         */
 /* ------------------------------------------------------------------ */
 
 function renderPatent() {
   return `<section class="section patent" id="patent" aria-labelledby="patent-title">
       <div class="wrap patent__inner">
-        <p class="eyebrow" data-reveal>${esc(patent.eyebrow)}</p>
-        <h2 class="patent__title" id="patent-title" data-reveal>${esc(patent.title)}</h2>
-        <p class="patent__meta" data-reveal>
-          <span class="patent__number">${esc(patent.number)}</span>
-          <span class="patent__dot" aria-hidden="true">·</span>
-          <time datetime="${patent.datetime}">${esc(patent.date)}</time>
-        </p>
-        <p class="patent__note" data-reveal>${esc(patent.note)}</p>
+        <figure class="patent__figure" data-magnet aria-hidden="true">
+          ${picture('patent', {
+            alt: '',
+            sizes: '(min-width: 900px) 38vw, 1px',
+            className: 'patent__picture',
+          })}
+        </figure>
+
+        <div class="patent__text">
+          <p class="eyebrow" data-reveal>${esc(patent.eyebrow)}</p>
+          <h2 class="patent__title" id="patent-title" data-reveal>${esc(patent.title)}</h2>
+          <p class="patent__meta" data-reveal>
+            <span class="patent__number">${esc(patent.number)}</span>
+            <span class="patent__dot" aria-hidden="true">·</span>
+            <time datetime="${patent.datetime}">${esc(patent.date)}</time>
+          </p>
+          <p class="patent__note" data-reveal>${esc(patent.note)}</p>
+        </div>
       </div>
     </section>`
 }
@@ -481,37 +510,12 @@ function renderCredentials() {
     </section>`
 }
 
-function renderContact() {
-  return `<section class="contact" id="contact" aria-labelledby="contact-title">
-      <div class="wrap contact__grid">
-        <div class="contact__body">
-          <p class="eyebrow" data-reveal>${esc(contact.eyebrow)}</p>
-          <h2 class="contact__title" id="contact-title">${esc(contact.heading)}</h2>
-          <p class="contact__lede" data-reveal>${esc(contact.lede)}</p>
-          <div class="contact__actions" data-reveal>
-            <a class="btn btn--glass btn--glass-dark" href="${site.linkedin}" target="_blank" rel="me noopener">${esc(contact.action)} <span aria-hidden="true">↗</span></a>
-            <a class="link-arrow" href="${site.resume}" download type="application/pdf">${esc(contact.resume)} <span aria-hidden="true">↗</span></a>
-          </div>
-          <p class="contact__address" data-reveal>${esc(site.location)}</p>
-        </div>
-
-        <figure class="contact__portrait" data-reveal>
-          ${picture(site.portrait, {
-            alt: `Portrait of ${site.name}`,
-            sizes: '(min-width: 768px) 30vw, 60vw',
-            eager: false,
-          })}
-        </figure>
-      </div>
-    </section>`
-}
-
 function renderFooter() {
   return `<footer class="footer">
       <div class="wrap footer__inner">
         <p class="footer__name">${esc(site.name)}</p>
+        <a class="footer__link" href="${site.linkedin}" target="_blank" rel="me noopener">${esc(footer.linkLabel)} <span aria-hidden="true">↗</span></a>
         <p class="footer__copy">© ${footer.year}</p>
-        <p class="footer__made">${esc(footer.made)}</p>
       </div>
     </footer>`
 }
@@ -530,7 +534,6 @@ export function renderBody() {
       ${renderCareer()}
       ${renderPatent()}
       ${renderCredentials()}
-      ${renderContact()}
     </main>
     ${renderFooter()}`
 }

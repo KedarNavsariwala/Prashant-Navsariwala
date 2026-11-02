@@ -7,18 +7,41 @@
 
   .patent__inner {
     display: grid;
-    justify-items: center;
-    gap: 22px;
-    max-width: 860px;
-    text-align: center;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: center;
+    gap: clamp(40px, 6vw, 96px);
+    max-width: 1180px;
+    text-align: left;
   }
 
-  .patent .eyebrow {
-    justify-content: center;
+  .patent__figure {
+    position: relative;
+    margin: 0;
+    min-width: 0;
+  }
+
+  .patent__figure img {
+    width: 100%;
+    height: auto;
+    mix-blend-mode: multiply;
+    will-change: transform;
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .patent__figure img {
+      transition: none;
+    }
+  }
+
+  .patent__text {
+    display: grid;
+    justify-items: start;
+    gap: 22px;
   }
 
   .patent__title {
-    font-size: clamp(2.3rem, 5vw, 4.25rem);
+    font-size: clamp(2.3rem, 4.4vw, 4rem);
     line-height: 1.02;
     max-width: 18ch;
   }
@@ -27,7 +50,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 12px;
     font-size: var(--fs-small);
     color: var(--ink-60);
@@ -109,72 +132,6 @@
     font-variant-numeric: tabular-nums;
   }
 
-  /* contact --------------------------------------------------------- */
-
-  .contact {
-    border-top: 1px solid var(--ink-30);
-    padding-block: var(--section-y);
-  }
-
-  .contact__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-    align-items: end;
-    gap: clamp(32px, 6vw, 80px);
-  }
-
-  .contact__title {
-    margin-top: 20px;
-    font-size: clamp(3.5rem, 9vw, 8rem);
-    line-height: 0.85;
-    letter-spacing: -0.03em;
-  }
-
-  .contact__lede {
-    margin-top: 24px;
-    font-size: 1.125rem;
-    line-height: 1.5;
-    max-width: 38ch;
-  }
-
-  .contact__actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 16px 28px;
-    margin-top: 32px;
-  }
-
-  .contact__address {
-    margin-top: 40px;
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-60);
-  }
-
-  .contact__portrait img {
-    max-height: 56svh;
-    width: auto;
-    max-width: 100%;
-    margin-left: auto;
-    object-fit: contain;
-    filter: grayscale(1);
-    transition: filter 600ms var(--ease);
-  }
-
-  @media (hover: hover) {
-    .contact__portrait:hover img {
-      filter: grayscale(0);
-    }
-  }
-
-  @media (hover: none) {
-    .contact__portrait:active img {
-      filter: grayscale(0);
-    }
-  }
-
   /* footer ---------------------------------------------------------- */
 
   .footer {
@@ -185,7 +142,7 @@
   .footer__inner {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
     gap: 10px 24px;
     font-size: 0.8125rem;
@@ -196,35 +153,76 @@
     color: var(--ink);
   }
 
+  .footer__link {
+    color: var(--ink);
+    font-weight: 500;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 1px;
+    padding-bottom: 2px;
+    transition: background-size 0.25s var(--ease);
+  }
+
+  .footer__link:hover {
+    background-size: 0 1px;
+    background-position: 100% 100%;
+  }
+
   @media (max-width: 899px) {
+    .patent__inner {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 0;
+      max-width: 860px;
+      text-align: center;
+    }
+
+    .patent__figure {
+      display: none;
+    }
+
+    .patent__text {
+      justify-items: center;
+      text-align: center;
+    }
+
+    .patent__meta {
+      justify-content: center;
+    }
+
+    .credentials {
+      padding-block: 48px;
+    }
+
     .cred__grid {
       grid-template-columns: 1fr;
-      gap: 48px;
+      gap: 32px;
+      margin-top: 32px;
     }
 
-    .contact__grid {
-      grid-template-columns: 1fr;
-      align-items: start;
+    .cred__label {
+      padding-bottom: 10px;
     }
 
-    .contact__portrait {
-      order: -1;
-      max-width: 300px;
+    .cert-list li {
+      padding-block: 11px;
+      font-size: 0.9375rem;
     }
 
-    .contact__portrait img {
-      max-height: 40svh;
-      margin-left: 0;
+    .edu {
+      padding-block: 13px;
     }
   }
 
   @media (max-width: 480px) {
-    .contact__title {
-      font-size: clamp(3rem, 16vw, 4.5rem);
+    .footer__inner {
+      justify-content: flex-start;
+      gap: 6px 20px;
     }
 
-    .contact__portrait {
-      display: none;
+    .footer__name {
+      flex: 1 0 100%;
     }
   }
 }

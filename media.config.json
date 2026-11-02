@@ -34,6 +34,11 @@
       "source": "Assets/Tata-Signa.png",
       "base": "signa",
       "widths": [420, 800, 1045]
+    },
+    "patent": {
+      "source": "Assets/Patent_side-img.png",
+      "base": "patent",
+      "widths": [640, 960]
     }
   }
 }

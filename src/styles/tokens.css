@@ -1,6 +1,6 @@
 @layer tokens {
   :root {
-    /* palette — three values only */
+    /* palette, three values only */
     --bg: #ffffff;
     --surface: #d9d9d9;
     --ink: #000000;

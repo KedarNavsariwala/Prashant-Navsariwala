@@ -1,16 +1,16 @@
 # Project Requirements Document
-## Prashant Navsariwala — Professional Portfolio
+## Prashant Navsariwala: Professional Portfolio
 
 | Field | Value |
 | --- | --- |
 | Document version | 1.4 (Draft) |
 | Date | 1 November 2026 |
 | Owner | Kedar Navsariwala |
-| Subject | Prashant Navsariwala — Automotive Product Design & Development Professional |
-| Status | Draft — pending answers to §13 |
+| Subject | Prashant Navsariwala, Automotive Product Design & Development Professional |
+| Status | Draft, pending answers to §13 |
 | Repository | `Prashant Navsariwala` (GitHub) |
 | Source of truth for facts | `Prashant Navsariwala Resume.pdf` (in repo root) |
-| Design reference | Figma — `Prashant-Navsariwala-Portfolio`, fileKey `LTgAGY4vxtBm0dKKOS2FYy` |
+| Design reference | Figma, `Prashant-Navsariwala-Portfolio`, fileKey `LTgAGY4vxtBm0dKKOS2FYy` |
 
 ---
 
@@ -18,7 +18,7 @@
 
 Build a **single-page, parallax- and motion-driven portfolio website** for Prashant Navsariwala, an automotive product design and development professional with 30 years in the automobile industry.
 
-The site presents his full professional history — career timeline, vehicle programmes, patent, certifications, education — as a continuous scrolling narrative rather than a résumé in HTML form. It is built on this machine, uses the supplied brand assets and typography, and is deployed as a static site.
+The site presents his full professional history (career timeline, vehicle programmes, patent, certifications, education) as a continuous scrolling narrative rather than a résumé in HTML form. It is built on this machine, uses the supplied brand assets and typography, and is deployed as a static site.
 
 **One-line brief:** A quiet, editorial, black-and-white scroll story that makes 30 years of vehicle design feel like a film, not a CV.
 
@@ -61,9 +61,9 @@ Primary device split assumed: **mobile-first**, with the desktop experience as t
 
 ---
 
-## 4. Content — facts from the résumé
+## 4. Content: facts from the résumé
 
-> **Rule:** every factual claim on the site must trace to `Prashant Navsariwala Resume.pdf`. Where the résumé is ambiguous, do not invent — see §13.
+> **Rule:** every factual claim on the site must trace to `Prashant Navsariwala Resume.pdf`. Where the résumé is ambiguous, do not invent; see §13.
 
 ### 4.1 Identity
 
@@ -81,19 +81,19 @@ Primary device split assumed: **mobile-first**, with the desktop experience as t
 
 > Innovative, creative, customer-centric professional with strategic business acumen and a passion for execution excellence, with **30 years of experience in the automobile industry**.
 >
-> - **25 years** — leading vehicle programmes and Centres of Competence in BIW, Load Body, Closures, Glasses, Sealing, Mechanisms, Exteriors, Interiors, Cockpit, Seating & Restraints systems
-> - **1.5 years** — Manufacturing Engineering
-> - **3.5 years** — Body (Sheet Metal) Production
-> - **1 year** — Central Quality Assurance
+> - **25 years**, leading vehicle programmes and Centres of Competence in BIW, Load Body, Closures, Glasses, Sealing, Mechanisms, Exteriors, Interiors, Cockpit, Seating & Restraints systems
+> - **1.5 years**, Manufacturing Engineering
+> - **3.5 years**, Body (Sheet Metal) Production
+> - **1 year**, Central Quality Assurance
 
 ### 4.3 Experience
 
 | Period | Organisation | Role | Location | Notes |
 | --- | --- | --- | --- | --- |
 | Feb 2014 – Present | Tata Motors | General Manager (Body & Trims Engg.) | Pune | CoC, Body & Trims (Commercial Vehicles) |
-| Feb 2012 – Feb 2014 | Mahindra & Mahindra Ltd, Automotive Sector | DGM — Projects (Product Development) | Mahindra World City, Chennai | Project Leader, Mahindra Jeeto |
-| Aug 1994 – Feb 2012 | Mahindra & Mahindra | D.G.M., Product Development (Body Systems) | — | HoD for Design & Development of Body Systems; 17 y 7 m total tenure |
-| 2002 – 2004 | Mahindra & Mahindra | Manager, Vehicle Engineering | — | Design, development and implementation of **Bolero XL & XLS**; conceptualising **Xylo** |
+| Feb 2012 – Feb 2014 | Mahindra & Mahindra Ltd, Automotive Sector | DGM, Projects (Product Development) | Mahindra World City, Chennai | Project Leader, Mahindra Jeeto |
+| Aug 1994 – Feb 2012 | Mahindra & Mahindra | D.G.M., Product Development (Body Systems) | - | HoD for Design & Development of Body Systems; 17 y 7 m total tenure |
+| 2002 – 2004 | Mahindra & Mahindra | Manager, Vehicle Engineering | - | Design, development and implementation of **Bolero XL & XLS**; conceptualising **Xylo** |
 | 1999 – 2000 | Mahindra & Mahindra | Senior Engineer, Central Quality Assurance | Nashik | NOVA-C management, manufacturing audits, launch sampling, quality planning for body manufacturing |
 
 **Total experience:** 30 years. **Leadership tenure:** 25 years. **Mahindra tenure:** 17 years 7 months.
@@ -128,7 +128,7 @@ Assets supplied for **6** of these (§9). *Minivan has no asset.*
 | NIMS, Pune University | M.B.A., Materials Management | 1996 – 1998 |
 | K. J. Somaiya College of Engineering, Mumbai University | B.E., Machine Tools Engineering | 1991 – 1994 |
 
-> ⚠️ The B.E. appears twice with identical dates (once under "University of Mumbai", once under "K. J. Somaiya College"). These are almost certainly the same degree — university and affiliated college. Resolve before publishing; do not print both.
+> ⚠️ The B.E. appears twice with identical dates (once under "University of Mumbai", once under "K. J. Somaiya College"). These are almost certainly the same degree: university and affiliated college. Resolve before publishing; do not print both.
 
 ### 4.8 Editorial rules
 
@@ -146,7 +146,7 @@ Single page, one route (`/`), anchored sections. Order is the narrative arc: *wh
 
 | # | Section | Anchor | Purpose | Primary content |
 | --- | --- | --- | --- | --- |
-| 0 | Nav | — | Orientation, always reachable | Wordmark + 4 links + "Résumé" |
+| 0 | Nav | - | Orientation, always reachable | Wordmark + 4 links + "Résumé" |
 | 1 | Hero | `#top` | Hook in one screen | "Innovation" display line, name, title, 30 years, portrait, primary CTA |
 | 2 | Introduction | `#about` | Who he is, at a glance | 2–3 sentence summary + 4 discipline stats |
 | 3 | Impact numbers | `#impact` | Instant credibility | 30 yrs · 25 yrs leadership · 6+ programmes · 1 patent |
@@ -162,21 +162,21 @@ Single page, one route (`/`), anchored sections. Order is the narrative arc: *wh
 
 **Hero.** Recreates the Figma composition: oversized italic serif "Innovation" bleeding past the left edge, portrait centred and overlapping the wordmark, small caps eyebrow ("Vehicle Design Leader"), one-line descriptor, CTA. Keep the hero at ~100 vh on desktop, ~90 vh mobile. The portrait must sit *above* the wordmark in z-order and *below* the nav.
 
-**Introduction.** The 30-year summary, then the four disciplines as a row (25 / 1.5 / 3.5 / 1 years). These four numbers are the most distinctive fact on the résumé — give them room.
+**Introduction.** The 30-year summary, then the four disciplines as a row (25 / 1.5 / 3.5 / 1 years). These four numbers are the most distinctive fact on the résumé; give them room.
 
 **Impact numbers.** Full-bleed `#D9D9D9` band. Four figures, count-up on entry. Each has a one-line caption. This band is the only place large numerals appear.
 
-**Selected work.** The centrepiece — a **showroom**, not a gallery. A single horizontal strip of vehicle cut-outs; hovering or focusing one lights a spotlight over it and loads that vehicle into a 3D stage alongside its spec panel. Full architecture in §5.2, motion in §7.3.
+**Selected work.** The centrepiece: a **showroom**, not a gallery. A single horizontal strip of vehicle cut-outs; hovering or focusing one lights a spotlight over it and loads that vehicle into a 3D stage alongside its spec panel. Full architecture in §5.2, motion in §7.3.
 
-**Career.** A vertical spine on the left with role cards to the right, and a **sticky media column** beside the timeline carrying workplace photography that crossfades per role (§5.3). Group by organisation: Mahindra (1994–2014) then Tata Motors (2014–present) — reverse-chronological is conventional, but a forward-chronological "1994 → today" build reads better with scroll-driven line drawing. **Recommend forward-chronological for the scroll narrative**; confirm in §13.
+**Career.** A vertical spine on the left with role cards to the right, and a **sticky media column** beside the timeline carrying workplace photography that crossfades per role (§5.3). Group by organisation: Mahindra (1994–2014) then Tata Motors (2014–present). Reverse-chronological is conventional, but a forward-chronological "1994 → today" build reads better with scroll-driven line drawing. **Recommend forward-chronological for the scroll narrative**; confirm in §13.
 
 **Patent.** A short, quiet, typographic section. Patent number set in Inter tabular figures, title in Instrument Serif. One sentence explaining the idea in plain language (to be written by the owner or approved by him).
 
-**Credentials.** Certifications as a two-column list; education below. Keep it compact — this is a credibility footnote, not a headline.
+**Credentials.** Certifications as a two-column list; education below. Keep it compact; this is a credibility footnote, not a headline.
 
 **Contact.** Large serif "Let's talk." + LinkedIn + email + location. Footer line: name, year, "Built with care in Pune".
 
-### 5.2 Selected Work — showroom architecture
+### 5.2 Selected Work: showroom architecture
 
 The section is a **showroom**, not a gallery: a rail of vehicles, a lit stage, and a spec sheet. The metaphor is a car on a turntable under a spotlight, with its specification beside it.
 
@@ -204,10 +204,10 @@ The section is a **showroom**, not a gallery: a rail of vehicles, a lit stage, a
 #### 5.2.2 The strip
 
 - Full-bleed `--surface` (`#D9D9D9`) band with 1 px `--ink-30` rules top and bottom.
-- Each item is the transparent PNG cut-out, optically normalised to equal visual mass and baseline-aligned on a common ground line — the Tata Signa truck and the Jeeto mini-truck must not look like the same size.
+- Each item is the transparent PNG cut-out, optically normalised to equal visual mass and baseline-aligned on a common ground line: the Tata Signa truck and the Jeeto mini-truck must not look like the same size.
 - **Rest state:** no border, no shadow, no caption.
-- **Lit state** (hover or focus): a soft **white pool of light** behind the car, 1.6× its width —
-  `radial-gradient(ellipse 60% 100% at 50% 0%, #FFFFFF 0%, rgba(255,255,255,.85) 45%, transparent 72%)` —
+- **Lit state** (hover or focus): a soft **white pool of light** behind the car, 1.6× its width,
+  `radial-gradient(ellipse 60% 100% at 50% 0%, #FFFFFF 0%, rgba(255,255,255,.85) 45%, transparent 72%)`,
   plus a faint white cone rising from the strip's top edge to imply a beam. This is the only spotlight in the design, and it is monochrome by construction, so it needs no new colour.
 - Unlit items drop to `opacity .45`. Transition 200 ms ease-out.
 - The lit item lifts 6 px, scales to 1.03, and gets a 4 px `--ink` tick under its centre on the strip's bottom rule.
@@ -217,7 +217,7 @@ The section is a **showroom**, not a gallery: a rail of vehicles, a lit stage, a
 
 - **One persistent WebGL canvas**, created once and never re-initialised on selection change.
 - **Camera:** fixed 35 mm-equivalent perspective, slightly above the horizon, aimed at the model's centre of mass. No user zoom in v1.
-- **Lighting:** studio three-point — key upper-left, fill from the right at 40 %, rim from behind to separate the silhouette from white. Neutral white environment (`RoomEnvironment`), no HDRI download.
+- **Lighting:** studio three-point, key upper-left, fill from the right at 40 %, rim from behind to separate the silhouette from white. Neutral white environment (`RoomEnvironment`), no HDRI download.
 - **Floor:** a 1 px contact-shadow ellipse only. No ground plane, no reflections, no gradient backdrop. The model floats on the page background exactly as the PNG cut-outs do, so the 2D and 3D states are visually continuous.
 - **Idle:** slow turntable, ~0.15 rad/s.
 - **Drag:** orbit yaw ±40°, pitch ±15°, damped; returns to the turntable 3 s after release.
@@ -246,7 +246,7 @@ Exactly four fields, in this order:
 | Input | Result |
 | --- | --- |
 | Pointer hover on a strip item | Spotlights it, loads its model into the stage |
-| Pointer leaves the strip | Keeps the last selection — no revert, no flicker |
+| Pointer leaves the strip | Keeps the last selection; no revert, no flicker |
 | Click / tap | Selects that vehicle (the touch path) |
 | `Tab` into the strip | Focuses the first item; focus behaves exactly like hover |
 | `←` / `→` | Moves selection along the strip |
@@ -255,7 +255,7 @@ Exactly four fields, in this order:
 
 **Hover is an enhancement, never the only path.** Every hover behaviour has a focus equivalent and a tap equivalent.
 
-#### 5.2.6 Progressive enhancement — shipping before the models exist
+#### 5.2.6 Progressive enhancement: shipping before the models exist
 
 The 3D models will be supplied later. The section must ship, and look finished, without them.
 
@@ -281,9 +281,9 @@ type Vehicle = {
 };
 ```
 
-### 5.3 Career — sticky image architecture
+### 5.3 Career: sticky image architecture
 
-The Career section pairs the timeline with workplace photography. Images never sit *behind* the text — they occupy a **sticky media column** beside it, and crossfade as the active role changes.
+The Career section pairs the timeline with workplace photography. Images never sit *behind* the text, they occupy a **sticky media column** beside it, and crossfade as the active role changes.
 
 #### 5.3.1 Layout
 
@@ -313,11 +313,11 @@ The Career section pairs the timeline with workplace photography. Images never s
 
 #### 5.3.2 Image behaviour
 
-- One image per **role**, not per year — five roles, five images.
+- One image per **role**, not per year, five roles, five images.
 - The active image belongs to the role whose card crosses **50 % of the viewport**.
 - The change is a **400 ms crossfade**: outgoing fades to 0, incoming fades in at scale 1.0. No slide, no wipe, no parallax. The image is evidence, not decoration.
 - The pane itself never scrolls; only its content changes. This is the section's single signature motion.
-- A caption always sits under the image — `location · year`, Inter, `--fs-small`, `--ink-60`.
+- A caption always sits under the image, `location · year`, Inter, `--fs-small`, `--ink-60`.
 
 #### 5.3.3 Empty state
 
@@ -349,7 +349,7 @@ type Role = {
 - `prefers-reduced-motion`: instant swap, no fade.
 - Images are `<img>` with factual alt text ("Body-in-white line at the Nashik plant"), `loading="lazy"`, explicit `width`/`height`, AVIF/WebP.
 - Only the **next** image is preloaded; the rest load on approach.
-- No information exists only in a photo — every caption is also carried by the role text.
+- No information exists only in a photo, every caption is also carried by the role text.
 
 ---
 
@@ -368,7 +368,7 @@ type Role = {
 
 Rules:
 - No additional hues in v1. Secondary text uses **alpha of black**, not a new grey hex, so the palette stays three values.
-- The only permitted accent later: a single warm metallic (suggest `#8A6A3B`) for the patent or CTA hover — **do not add until approved.**
+- The only permitted accent later: a single warm metallic (suggest `#8A6A3B`) for the patent or CTA hover, **do not add until approved.**
 - Black on `#D9D9D9` contrast ≈ 14.9:1; black on white = 21:1. Both pass AAA. Never place `--ink-60` text on `--surface` below 16 px.
 
 ### 6.2 Typography
@@ -392,7 +392,7 @@ Type scale (desktop / mobile, rem):
 | `--fs-eyebrow` | 0.8125 | 0.75 | Labels |
 
 Rules:
-- Instrument Serif is a **display face only** — never below 24 px, never for body copy.
+- Instrument Serif is a **display face only**, never below 24 px, never for body copy.
 - Hero display text may be set in `clamp()` and allowed to overflow the container horizontally, but must never cause horizontal page scroll (clip on the section).
 - Line height: display 0.9–0.95; headings 1.05; body 1.6.
 - Fonts self-hosted via `@fontsource` (Inter 400/500/600, Instrument Serif 400 + italic), subset `latin`, `font-display: swap`, preload the two hero faces only.
@@ -401,18 +401,18 @@ Rules:
 
 - 12-column grid, max content width **1280 px**, gutter 24 px, side padding 20 px mobile / 48 px desktop.
 - Spacing scale (px): 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 · 96 · 128 · 160. Section vertical padding: 96 mobile / 160 desktop.
-- Radii: 0 for structural elements; 999 px only for chips/buttons (matching the glass-button instance in Figma). No drop shadows — depth comes from layout and motion, not elevation.
+- Radii: 0 for structural elements; 999 px only for chips/buttons (matching the glass-button instance in Figma). No drop shadows, depth comes from layout and motion, not elevation.
 - Rules/hairlines: 1 px `--ink-30`.
 
 ### 6.4 Imagery
 
-- All seven supplied assets are **transparent PNG cut-outs** (32-bit ARGB, alpha = 0 at corners), not white-background photos. This means vehicles and the portrait float on any surface — use them as objects, not as framed photos.
+- All seven supplied assets are **transparent PNG cut-outs** (32-bit ARGB, alpha = 0 at corners), not white-background photos. This means vehicles and the portrait float on any surface, use them as objects, not as framed photos.
 - Vehicles are **4:3 landscape**; the portrait is **3:4 portrait** (699 × 932). Design to these ratios; never upscale beyond 1.5× source.
-- Vehicles should be presented at consistent optical size, not consistent bounding-box size — the truck (Tata Signa) and the small LCVs (Jeeto, Maxximo) differ in real-world scale. Normalise by visual mass, and label each with its class so scale is legible.
+- Vehicles should be presented at consistent optical size, not consistent bounding-box size, the truck (Tata Signa) and the small LCVs (Jeeto, Maxximo) differ in real-world scale. Normalise by visual mass, and label each with its class so scale is legible.
 - Portrait: only the supplied cut-out is approved for v1. No filters, no duotone, no recolouring.
 - Backgrounds: `--bg` or `--surface` only. Never place a cut-out across a busy area or across a text baseline.
 - Edge quality: the alpha-0 pixels carry non-white RGB; if halos appear on `--surface`, run a 1 px matte/defringe pass rather than adding a white plate behind the image.
-- **Workplace photography** (§5.3) is the only natural-colour surface on the site. Keep it unfiltered — no duotone, no heavy grade, no black-and-white conversion. The colour in those photos is the counterpoint to the monochrome system, and the contrast is intentional.
+- **Workplace photography** (§5.3) is the only natural-colour surface on the site. Keep it unfiltered, no duotone, no heavy grade, no black-and-white conversion. The colour in those photos is the counterpoint to the monochrome system, and the contrast is intentional.
 - Crop workplace photos to **3:2** for the desktop sticky pane and **16:9** for the mobile card. Supply at ≥ 1600 px on the long edge.
 - Never set text over a photograph. Captions sit below it, on the page background.
 
@@ -447,8 +447,8 @@ Rules:
 | Hero | Layered parallax | Wordmark moves at 0.2× scroll speed, portrait at 0.08×, eyebrow/CTA fade out by 30 % scroll. Creates depth without 3D |
 | Introduction | Line-by-line text reveal | Body copy splits into lines (not characters), each rising 16 px in sequence |
 | Impact numbers | Count-up | 0 → value over 1.2 s on entry, `tabular-nums`, no layout shift; number never re-animates on scroll-back |
-| Selected work | Showroom lighting + turntable | Hover/focus raises the white spotlight pool (200 ms), lifts the strip item 6 px and dims its siblings to `.45`. The stage crossfades to the new model in 220 ms with the camera fixed. The model idles on a slow turntable (0.15 rad/s) and the render loop pauses off-screen. No pinning and no scroll-jacking — the strip is a rail, not a carousel |
-| Career | Spine draw + image crossfade | SVG path `stroke-dashoffset` 1 → 0 across the section; role cards fade in as the line reaches them. The sticky media column crossfades (400 ms, opacity only) when a role crosses 50 % of the viewport. The image pane never moves — only its content changes |
+| Selected work | Showroom lighting + turntable | Hover/focus raises the white spotlight pool (200 ms), lifts the strip item 6 px and dims its siblings to `.45`. The stage crossfades to the new model in 220 ms with the camera fixed. The model idles on a slow turntable (0.15 rad/s) and the render loop pauses off-screen. No pinning and no scroll-jacking, the strip is a rail, not a carousel |
+| Career | Spine draw + image crossfade | SVG path `stroke-dashoffset` 1 → 0 across the section; role cards fade in as the line reaches them. The sticky media column crossfades (400 ms, opacity only) when a role crosses 50 % of the viewport. The image pane never moves, only its content changes |
 | Patent | Stillness | Deliberately static; only a 400 ms fade. Contrast with the motion around it is the point |
 | Credentials | Simple stagger | List items fade/rise, no parallax |
 | Contact | Slow rise | Single 40 px rise on the closing statement |
@@ -459,7 +459,7 @@ When `prefers-reduced-motion: reduce`:
 - Lenis disabled; native scroll.
 - All parallax and count-up removed.
 - Reveals become a 200 ms opacity fade with no translation.
-- The showroom keeps its layout, but loses the turntable, the lift, the dimming and the crossfade — selection swaps with a 150 ms opacity change. Drag-to-orbit stays, because it is user-initiated.
+- The showroom keeps its layout, but loses the turntable, the lift, the dimming and the crossfade, selection swaps with a 150 ms opacity change. Drag-to-orbit stays, because it is user-initiated.
 - Career images swap instantly, with no crossfade.
 - No information is conveyed by motion alone.
 
@@ -482,7 +482,7 @@ When `prefers-reduced-motion: reduce`:
 | Markup | Static HTML generated from a typed content module | One page; no hydration needed |
 | Styling | Hand-written CSS with custom properties + cascade layers | Palette and type are simple; a framework would fight the design |
 | Motion | **GSAP + ScrollTrigger** (free tier) | Scroll-linked reveals, scrubbing, timeline orchestration |
-| 3D | **three.js** (`WebGLRenderer` + `GLTFLoader`) | One persistent canvas, full control of studio lighting, model swap without re-init. Alternative: `@google/model-viewer` — less code, less control over the spotlight look |
+| 3D | **three.js** (`WebGLRenderer` + `GLTFLoader`) | One persistent canvas, full control of studio lighting, model swap without re-init. Alternative: `@google/model-viewer`, less code, less control over the spotlight look |
 | Smooth scroll | **Lenis** | Small, well-behaved, easy to disable |
 | Fonts | `@fontsource-variable/inter`, `@fontsource/instrument-serif` | Self-hosted, no third-party request |
 | Images | Pre-optimised AVIF + WebP + PNG fallback, `srcset` | Cut-outs need alpha; AVIF/WebP both support it |
@@ -540,7 +540,7 @@ Last 2 versions of Chrome, Edge, Firefox, Safari (desktop and iOS/Android). No I
 | Hero image payload | < 180 KB |
 | Workplace photo, per image | < 220 KB (AVIF, 1600 px long edge) |
 | 3D model, per vehicle | < 3 MB (Draco or Meshopt compressed, ≤ 25k tris, ≤ 2K textures) |
-| 3D models resident at once | 2 — current + next prefetched |
+| 3D models resident at once | 2, current + next prefetched |
 | Deferred 3D chunk (three.js + GLTFLoader, gzip) | < 180 KB, imported only as the showroom nears the viewport |
 | Lighthouse (mobile) | Performance ≥ 90, Accessibility 100, Best Practices ≥ 95, SEO 100 |
 
@@ -548,23 +548,23 @@ Implementation notes:
 - Portrait is the LCP element: preload it, serve AVIF at 700/1050 px widths.
 - All vehicle images `loading="lazy"` + `decoding="async"`, with explicit `width`/`height` to reserve space.
 - No render-blocking third-party requests.
-- **GLBs load on first interaction only** — never on page load. Until then the stage shows the PNG cut-out, so the LCP is never blocked by 3D. The three.js chunk itself is dynamically imported when the showroom first enters the viewport.
+- **GLBs load on first interaction only**: never on page load. Until then the stage shows the PNG cut-out, so the LCP is never blocked by 3D. The three.js chunk itself is dynamically imported when the showroom first enters the viewport.
 
 ### 8.5 Accessibility (WCAG 2.2 AA)
 
 - Semantic landmarks: `header`, `nav`, `main`, `section` with `aria-labelledby`, `footer`.
 - Heading order: one `h1` (name), `h2` per section, `h3` per role/project. Never skip levels.
-- **Showroom:** each strip item is a `<button>` with `aria-pressed` reflecting selection; focus produces exactly the hover state; `←` / `→` move selection; the spec panel is a single `aria-live="polite"` region so one announcement fires per selection change, not one per field. The WebGL canvas is `aria-hidden="true"` — the panel carries all content, and **no information exists only in the 3D view**. A default vehicle is selected on load, so the section is complete without any interaction.
+- **Showroom:** each strip item is a `<button>` with `aria-pressed` reflecting selection; focus produces exactly the hover state; `←` / `→` move selection; the spec panel is a single `aria-live="polite"` region so one announcement fires per selection change, not one per field. The WebGL canvas is `aria-hidden="true"`, the panel carries all content, and **no information exists only in the 3D view**. A default vehicle is selected on load, so the section is complete without any interaction.
 - **Career images:** factual alt text (place and era, never "image of"); captions are visible text, not alt-only; the crossfade is decorative and carries no information on its own; the pane is not a carousel and has no controls, so it adds no keyboard stops.
 - Decorative duplicate text (e.g. the oversized "Innovation" if repeated for effect) gets `aria-hidden="true"`; the accessible name lives in the real heading.
 - Visible focus ring on every interactive element: 2 px solid `--ink`, 2 px offset.
 - Skip-to-content link as the first focusable element.
-- Alt text: portrait = "Portrait of Prashant Navsariwala"; vehicles = "<Programme name>, <vehicle class>, designed at <OEM>" — factual, no marketing.
+- Alt text: portrait = "Portrait of Prashant Navsariwala"; vehicles = "<Programme name>, <vehicle class>, designed at <OEM>", factual, no marketing.
 - Test with keyboard only, VoiceOver (Safari/iOS), NVDA (Windows), and at 200 % zoom.
 
 ### 8.6 SEO and sharing
 
-- `<title>`: `Prashant Navsariwala — Automotive Product Design & Development`
+- `<title>`: `Prashant Navsariwala, Automotive Product Design & Development`
 - Meta description ≤ 155 chars, drawn from §4.2.
 - Open Graph + Twitter card, 1200 × 630 image: portrait on white, name in Instrument Serif.
 - JSON-LD `Person`: `name`, `jobTitle`, `address` (Pune, IN), `worksFor` (Tata Motors), `alumniOf`, `sameAs` (LinkedIn), `knowsAbout`.
@@ -578,7 +578,7 @@ No cookies, no tracking pixels, no third-party embeds in v1. If analytics is add
 ### 8.8 Hosting and build
 
 - **Static hosting on GitHub Pages, built by GitHub Actions** on push to the default branch. Owner decision, 1 Nov 2026.
-- **All rendering happens client-side.** No server, no API, no runtime compute: the build emits static files and every pixel — including the 3D stage — is produced in the visitor's browser.
+- **All rendering happens client-side.** No server, no API, no runtime compute: the build emits static files and every pixel, including the 3D stage, is produced in the visitor's browser.
 - Consequences of client-side-only rendering:
   - WebGL support is the visitor's, not ours → the PNG fallback in §5.2.6 is mandatory, not optional.
   - Every model is downloaded to the visitor → the §8.4 budgets are per-visitor costs, not server costs.
@@ -602,7 +602,7 @@ No cookies, no tracking pixels, no third-party embeds in v1. If analytics is add
 | `Assets/Tata-Signa.png` | 1045 × 784 | 4:3 | Yes | Vehicle | Work 06 |
 
 Notes:
-- `Mahindra-maxx.png` is the smallest source (800 × 600) — cap its rendered width at ~800 px or accept mild softness.
+- `Mahindra-maxx.png` is the smallest source (800 × 600), cap its rendered width at ~800 px or accept mild softness.
 - All vehicles are front/three-quarter studio cut-outs on transparency; they will read as floating objects. That is the intended art direction.
 - **Missing:** Minivan (named in the résumé, no asset) and any image of the patent, the XLS variant, or workplace/team shots. Do not fabricate substitutes; either omit or request assets (§13).
 - Licence/ownership of vehicle imagery should be confirmed before public launch (§13).
@@ -618,7 +618,7 @@ Notes:
 | `Assets/models/jeeto.glb` | Mahindra Jeeto | Not yet created |
 | `Assets/models/tata-signa.glb` | Tata Signa | Not yet created |
 
-Delivery requirements — the stage assumes all of these:
+Delivery requirements, the stage assumes all of these:
 
 | Property | Requirement |
 | --- | --- |
@@ -630,28 +630,28 @@ Delivery requirements — the stage assumes all of these:
 | Extras | No cameras or lights exported; a single named root node per vehicle |
 | Optional | A `*.poster.webp` still per model for the loading state |
 
-Because the strip is a fixed-height rail, every model is normalised at load time to a common bounding box, not a common scale — the Signa must read as a truck and the Jeeto as a mini-truck.
+Because the strip is a fixed-height rail, every model is normalised at load time to a common bounding box, not a common scale, the Signa must read as a truck and the Jeeto as a mini-truck.
 
 ### 9.2 Workplace photography (pending)
 
 | File (proposed) | Role it illustrates | Status |
 | --- | --- | --- |
 | `Assets/workplace/mahindra-body-systems.jpg` | DGM, Product Development (Body Systems) | Not yet supplied |
-| `Assets/workplace/mahindra-central-qa.jpg` | Senior Engineer, Central QA — Nashik | Not yet supplied |
+| `Assets/workplace/mahindra-central-qa.jpg` | Senior Engineer, Central QA, Nashik | Not yet supplied |
 | `Assets/workplace/mahindra-vehicle-engineering.jpg` | Manager, Vehicle Engineering | Not yet supplied |
-| `Assets/workplace/mahindra-projects-chennai.jpg` | DGM Projects — Chennai | Not yet supplied |
-| `Assets/workplace/tata-body-trims.jpg` | GM, Body & Trims — Pune | Not yet supplied |
+| `Assets/workplace/mahindra-projects-chennai.jpg` | DGM Projects, Chennai | Not yet supplied |
+| `Assets/workplace/tata-body-trims.jpg` | GM, Body & Trims, Pune | Not yet supplied |
 
 | Property | Requirement |
 | --- | --- |
 | Format | JPEG or PNG source; AVIF + WebP derivatives generated at build |
 | Size | ≥ 1600 px on the long edge, 3:2 landscape (a 16:9 crop is derived for mobile) |
-| Content | The place, the work or the team — not a posed portrait; the hero already carries one |
+| Content | The place, the work or the team, not a posed portrait; the hero already carries one |
 | People | Any identifiable colleague needs their consent before publication |
 | Rights | Company photography may need clearance from Mahindra and Tata communications |
 | Text | No text burned into the image |
 
-If a role has no image, the pane renders the `--surface` plate from §5.3.3 — the section is never blocked on photography.
+If a role has no image, the pane renders the `--surface` plate from §5.3.3, the section is never blocked on photography.
 
 ---
 
@@ -665,13 +665,13 @@ Copy is drafted in `src/content.ts`. Drafting guidance:
 | Introduction | 60–90 words | Direct, first person, factual |
 | Impact captions | 4–6 words each | Labels, not sentences |
 | Project entries | 25–40 words each | What it was, what he did, why it mattered |
-| Vehicle reviews | 12–18 words, one sentence each | Plain and specific. State the trade-off the vehicle made and why it mattered — no marketing |
+| Vehicle reviews | 12–18 words, one sentence each | Plain and specific. State the trade-off the vehicle made and why it mattered, no marketing |
 | Career roles | 20–35 words each | Scope and outcome, not duties |
 | Patent | 25–40 words | Plain English explanation |
 | Credentials | List only | No prose |
 | Contact | 5–10 words | Warm, brief |
 
-Avoid: "passionate", "seasoned", "results-driven", "dynamic", "synergy", "leveraged". The résumé already says "innovative, creative, customer-centric" — keep at most one of those, once.
+Avoid: "passionate", "seasoned", "results-driven", "dynamic", "synergy", "leveraged". The résumé already says "innovative, creative, customer-centric", keep at most one of those, once.
 
 ---
 
@@ -679,12 +679,12 @@ Avoid: "passionate", "seasoned", "results-driven", "dynamic", "synergy", "levera
 
 | Phase | Deliverable | Exit criteria |
 | --- | --- | --- |
-| M0 — Foundation | Repo scaffold, tokens, fonts, content module, static sections with no motion | Page reads end-to-end, responsive, Lighthouse ≥ 95 a11y |
-| M1 — Design pass | Hero, showroom (strip + stage running on the PNG fallback), career timeline with its media column (plate fallback), all laid out at 1440 / 768 / 390 | Matches design intent at all three widths |
-| M2 — Motion | Hero parallax, spotlight/dim/selection states, reveals, spine draw, career image crossfade, count-up | 60 fps mid-range Android; reduced-motion path complete |
-| M2.5 — 3D | GLB loader, studio lighting, turntable, orbit, crossfade, fallbacks | Any vehicle with a model renders in the stage; vehicles without one fall back silently |
-| M3 — Polish | Image optimisation, OG/JSON-LD, keyboard pass, cross-browser QA | All budgets in §8.4 met |
-| M4 — Launch | Deploy, custom domain (if any), post-launch check | Live URL verified on real devices |
+| M0, Foundation | Repo scaffold, tokens, fonts, content module, static sections with no motion | Page reads end-to-end, responsive, Lighthouse ≥ 95 a11y |
+| M1, Design pass | Hero, showroom (strip + stage running on the PNG fallback), career timeline with its media column (plate fallback), all laid out at 1440 / 768 / 390 | Matches design intent at all three widths |
+| M2, Motion | Hero parallax, spotlight/dim/selection states, reveals, spine draw, career image crossfade, count-up | 60 fps mid-range Android; reduced-motion path complete |
+| M2.5, 3D | GLB loader, studio lighting, turntable, orbit, crossfade, fallbacks | Any vehicle with a model renders in the stage; vehicles without one fall back silently |
+| M3, Polish | Image optimisation, OG/JSON-LD, keyboard pass, cross-browser QA | All budgets in §8.4 met |
+| M4, Launch | Deploy, custom domain (if any), post-launch check | Live URL verified on real devices |
 
 ---
 
@@ -698,7 +698,7 @@ The project is done when all of the following are true:
 4. The showroom is complete before any interaction: a default vehicle is selected on load and all four spec fields are visible without hovering.
 5. Every hover behaviour has a keyboard-focus equivalent and a tap equivalent; the section is fully usable with no pointer device at all.
 6. A vehicle with no 3D model renders its PNG cut-out in the stage with no error, no empty frame and no visual regression; a vehicle with a model renders the GLB, and a failed GLB load falls back silently.
-7. No sales, volume or market-share figure appears anywhere on the site, in any form — panel, tooltip, stat strip or copy.
+7. No sales, volume or market-share figure appears anywhere on the site, in any form, panel, tooltip, stat strip or copy.
 8. Page works with JavaScript disabled (content and layout intact, motion and 3D absent).
 9. `prefers-reduced-motion` removes all parallax, count-up, turntable, lift, dimming and crossfade.
 10. Keyboard-only navigation reaches every link, every strip item, and the résumé download; focus is always visible.
@@ -719,23 +719,23 @@ The project is done when all of the following are true:
 | Q3 | Résumé says **"6+ Successful Projects"** but names **7** (incl. Minivan). Ship 6 with assets, or 7 with one imageless entry? | Showroom strip count and the "6+" stat | Ship 6; say "6+ programmes" |
 | Q4 | **B.E. listed twice** (University of Mumbai and K. J. Somaiya College, same dates). Confirm the single correct entry. | Education section accuracy | One entry: B.E. Machine Tools Engineering, K. J. Somaiya College of Engineering, University of Mumbai, 1991–1994 |
 | Q5 | Are the **vehicle images cleared for public use**? OEM press imagery often has usage terms. | Legal risk on a public site | Ship privately / unlisted until confirmed |
-| Q6 | Any **additional assets** — Minivan, XLS, patent drawing, team or plant photography, a second portrait? | Showroom and patent section richness | Build with what exists; leave slots in `content.ts` |
-| Q7 | **Domain** — custom domain or `*.github.io`? | Canonical URL, OG, sitemap | GitHub Pages URL |
+| Q6 | Any **additional assets**, Minivan, XLS, patent drawing, team or plant photography, a second portrait? | Showroom and patent section richness | Build with what exists; leave slots in `content.ts` |
+| Q7 | **Domain**, custom domain or `*.github.io`? | Canonical URL, OG, sitemap | GitHub Pages URL |
 | Q8 | **Voice**: first person ("I led…") or third person ("Prashant led…")? | Every string on the site | First person |
 | Q9 | Should the **résumé PDF** be downloadable publicly, or gated behind a request? | Privacy (phone/email in PDF) | Downloadable, after confirming no personal phone number is exposed |
-| Q10 | **Analytics** — none, or cookieless page views? | Footer disclosure | None |
+| Q10 | **Analytics**, none, or cookieless page views? | Footer disclosure | None |
 | Q11 | Is the **timeline forward (1994 → today)** or reverse-chronological? | Career section build and scroll direction | Forward |
 | Q12 | Do you want the **Figma file updated** to match the built site, or is Figma now superseded by the code? | Whether design work continues in Figma | Code becomes source of truth |
-| Q13 | ~~Sales figures~~ **Dropped.** Owner decision, 1 Nov 2026: no first-year sales for any vehicle, anywhere on the site. The research in `research/vehicle-data.md` is retained for reference only and must not be surfaced | — | No sales field exists in the spec panel |
-| Q14 | **3D models** — will you supply `.glb`, and do you want animated wheels/doors, or static turntable models? Any `.usdz` for AR on iOS? | Determines loader, animation rig and budget | Static `.glb`, no animation |
+| Q13 | ~~Sales figures~~ **Dropped.** Owner decision, 1 Nov 2026: no first-year sales for any vehicle, anywhere on the site. The research in `research/vehicle-data.md` is retained for reference only and must not be surfaced | - | No sales field exists in the spec panel |
+| Q14 | **3D models**, will you supply `.glb`, and do you want animated wheels/doors, or static turntable models? Any `.usdz` for AR on iOS? | Determines loader, animation rig and budget | Static `.glb`, no animation |
 | Q15 | ~~Launch years~~ **Resolved.** Maxx 2001 · Bolero XL 2001 · Xylo Jan 2009 · Maxximo Feb 2010 · Jeeto Jun 2015 · Signa Feb 2016 (range). Sourced in `research/vehicle-data.md`. Still open: the Signa asset shows a 4825.TK, a c. 2020 variant | Which Signa year the entry describes | Entry covers the 2016 range launch |
-| Q16 | **Vehicle type labels** — the exact taxonomy you want ("LCV · Mini truck", "MUV", "Tipper · ICV")? | The type field is free text and will drift without a fixed list | Draft taxonomy in `content.ts`, reviewed at M1 |
-| Q17 | **Review sentences** — do you write them, or should I draft from the résumé for your approval? | They carry factual and reputational risk | I draft, you approve before launch |
-| Q18 | **3D on mobile** — full 3D, or PNG-only below 768 px to protect performance? | Affects the mobile budget and the M2.5 scope | Full 3D, with PNG fallback if the device reports low memory |
+| Q16 | **Vehicle type labels**, the exact taxonomy you want ("LCV · Mini truck", "MUV", "Tipper · ICV")? | The type field is free text and will drift without a fixed list | Draft taxonomy in `content.ts`, reviewed at M1 |
+| Q17 | **Review sentences**, do you write them, or should I draft from the résumé for your approval? | They carry factual and reputational risk | I draft, you approve before launch |
+| Q18 | **3D on mobile**, full 3D, or PNG-only below 768 px to protect performance? | Affects the mobile budget and the M2.5 scope | Full 3D, with PNG fallback if the device reports low memory |
 | Q19 | If the vehicle list grows past 8, does the strip **scroll horizontally** or do we curate it down? | Layout rule in §5.2.1 | Scroll with edge fades |
-| Q20 | **Workplace photos** — who supplies them, and are identifiable colleagues consenting? Do Mahindra/Tata need to clear company photography? | Cannot publish photos without consent and rights | Ship the plate fallback (§5.3.3) until cleared |
-| Q21 | **How many career images** — one per role (5), or fewer atmospheric shots per organisation/era (2–3)? | Determines the asset request and the crossfade rhythm | One per role |
-| Q22 | **Colour treatment** for workplace photos — natural, or ~15 % desaturated to sit closer to the monochrome system? | Sets the grade applied at build | Natural colour |
+| Q20 | **Workplace photos**, who supplies them, and are identifiable colleagues consenting? Do Mahindra/Tata need to clear company photography? | Cannot publish photos without consent and rights | Ship the plate fallback (§5.3.3) until cleared |
+| Q21 | **How many career images**, one per role (5), or fewer atmospheric shots per organisation/era (2–3)? | Determines the asset request and the crossfade rhythm | One per role |
+| Q22 | **Colour treatment** for workplace photos, natural, or ~15 % desaturated to sit closer to the monochrome system? | Sets the grade applied at build | Natural colour |
 
 ---
 
@@ -744,7 +744,7 @@ The project is done when all of the following are true:
 - Résumé: `Prashant Navsariwala Resume.pdf`
 - Figma: `https://www.figma.com/design/LTgAGY4vxtBm0dKKOS2FYy/Prashant-Navsariwala-Portfolio`
 - LinkedIn: `https://www.linkedin.com/in/prashant-navsariwala-560b4335`
-- Patent: WO/2009/113096 — Impact Absorbing Structure for Vehicles, 17 Sep 2009
+- Patent: WO/2009/113096, Impact Absorbing Structure for Vehicles, 17 Sep 2009
 - Fonts: Inter (Rasmus Andersson, OFL), Instrument Serif (Instrument, OFL)
 - Vehicle research: `research/vehicle-data.md` (sourced record) · `research/vehicle-data.json` (machine-readable)
 
@@ -754,12 +754,12 @@ The project is done when all of the following are true:
 
 | Version | Date | Change |
 | --- | --- | --- |
-| 1.0 | 1 Nov 2026 | Initial draft — content, IA, design system, motion, tech, milestones |
+| 1.0 | 1 Nov 2026 | Initial draft, content, IA, design system, motion, tech, milestones |
 | 1.1 | 1 Nov 2026 | Selected Work re-architected as a **showroom**: horizontal asset strip, hover/focus spotlight, 3D stage with GLB models, five-field spec panel (name, type, launch year, first-year sales, review). Added §5.2, three.js to the stack, 3D budgets, showroom accessibility rules, pending model inventory (§9.1), and Q13–Q19 |
-| 1.2 | 1 Nov 2026 | Vehicle research completed (`research/vehicle-data.md`, `.json`) — launch years for all six, first-year sales for Xylo and Jeeto, explicit empty state for the other four (Q13/Q15). WebGL restriction lifted; added §8.8 hosting and build (GitHub Actions → GitHub Pages, client-side rendering only) |
+| 1.2 | 1 Nov 2026 | Vehicle research completed (`research/vehicle-data.md`, `.json`), launch years for all six, first-year sales for Xylo and Jeeto, explicit empty state for the other four (Q13/Q15). WebGL restriction lifted; added §8.8 hosting and build (GitHub Actions → GitHub Pages, client-side rendering only) |
 | 1.3 | 1 Nov 2026 | Career section gains a **sticky media column** of workplace photography that crossfades per role (§5.3). Added §9.2 photo inventory and delivery requirements, §6.4 colour rules, crossfade motion and reduced-motion handling, a photo budget, accessibility rules, acceptance criterion 15, and Q20–Q22 |
 | 1.4 | 1 Nov 2026 | **First-year sales dropped entirely** (owner decision). Spec panel reduced from five fields to four; sales removed from the content type, content plan, acceptance criteria and Q13. Research data retained as reference only, marked retired |
 
 ---
 
-*End of document — v1.4 draft.*
+*End of document, v1.4 draft.*

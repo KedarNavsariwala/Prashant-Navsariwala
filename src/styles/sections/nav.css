@@ -59,8 +59,7 @@
     font-size: 0.875rem;
   }
 
-  .nav__link,
-  .nav__resume {
+  .nav__link {
     padding-block: 4px;
     background-image: linear-gradient(currentColor, currentColor);
     background-repeat: no-repeat;
@@ -69,24 +68,8 @@
     transition: background-size 0.3s var(--ease);
   }
 
-  .nav__link:hover,
-  .nav__resume:hover {
+  .nav__link:hover {
     background-size: 100% 1px;
-  }
-
-  .nav__resume {
-    padding: 0.55rem 0.95rem;
-    border: 1px solid var(--ink);
-    border-radius: 999px;
-    background-image: none;
-    transition:
-      background-color 0.25s var(--ease),
-      color 0.25s var(--ease);
-  }
-
-  .nav__resume:hover {
-    background: var(--ink);
-    color: var(--bg);
   }
 
   .nav__menu {
@@ -188,7 +171,7 @@
     color: var(--ink-60);
   }
 
-  .menu__resume {
+  .menu__linkedin {
     font-weight: 500;
     color: var(--ink);
     text-decoration: underline;

@@ -35,13 +35,15 @@ export type Role = {
   /** ISO-ish month, used only for the machine-readable end of the timeline. */
   start: string
   end: string | null
-  /** Human display, e.g. "1994 — 2012". */
+  /** Human display, e.g. "1994 to 2012". */
   dates: string
   tenure?: string
   location?: string
   summary: string
   image?: string
   imageCaption?: string
+  /** Earlier positions held inside this tenure, shown nested under the card. */
+  children?: Role[]
 }
 
 export const site = {
@@ -49,9 +51,9 @@ export const site = {
   role: 'Automotive Product Design and Development Professional',
   location: 'Pune, Maharashtra, India',
   url: 'https://prashant-navsariwala.github.io/',
-  title: 'Prashant Navsariwala — Automotive Product Design & Development',
+  title: 'Prashant Navsariwala | Automotive Product Design & Development',
   description:
-    'Thirty years in automotive body engineering — vehicle programmes, body systems and a patent, from Mahindra & Mahindra to Tata Motors.',
+    'Thirty years in automotive body engineering: vehicle programmes, body systems and a patent, from Mahindra & Mahindra to Tata Motors.',
   linkedin: 'https://www.linkedin.com/in/prashant-navsariwala-560b4335',
   company: 'https://www.tatamotors.com',
   resume: 'resume.pdf',
@@ -63,17 +65,16 @@ export const nav = {
     { label: 'About', href: '#about' },
     { label: 'Work', href: '#work' },
     { label: 'Career', href: '#career' },
-    { label: 'Contact', href: '#contact' },
   ],
-  resumeLabel: 'Résumé',
+  linkedinLabel: 'LinkedIn',
 } as const
 
 export const hero = {
   eyebrow: 'Vehicle design leader · Pune, India',
   roleLine: 'Vehicle Design Leader',
   display: 'Innovation',
-  /** Character index where the wordmark parts around the portrait: "Inno" / "vation". */
-  displaySplit: 4,
+  /** Character index where the intro opens the gap: "Innov" / "ation". */
+  displaySplit: 5,
   name: 'Prashant Navsariwala',
   title: 'Automotive Product Design and Development Professional',
   lede: 'I have spent thirty years shaping the body, closures and cockpits of the vehicles India drives.',
@@ -85,10 +86,10 @@ export const hero = {
 } as const
 
 export const about = {
-  eyebrow: '01 — About',
+  eyebrow: '01 · About',
   heading: 'Thirty years, one discipline: the body of the vehicle.',
   lede:
-    'I have spent thirty years in the automobile industry, twenty-five of them leading vehicle programmes and Centres of Competence. My work sits in the structures you touch and the surfaces you see — BIW, load bodies, closures, glass, sealing, mechanisms, exteriors, interiors, cockpits, seating and restraints. I have taken vehicles from a clean sheet to the line at Mahindra & Mahindra and now at Tata Motors, and I still believe the best engineering is the kind a customer never has to think about.',
+    'I have spent thirty years in the automobile industry, twenty-five of them leading vehicle programmes and Centres of Competence. My work sits in the structures you touch and the surfaces you see: BIW, load bodies, closures, glass, sealing, mechanisms, exteriors, interiors, cockpits, seating and restraints. I have taken vehicles from a clean sheet to the line at Mahindra & Mahindra and now at Tata Motors, and I still believe the best engineering is the kind a customer never has to think about.',
   disciplines: [
     { value: '25', unit: 'years', label: 'Leading vehicle programmes and Centres of Competence' },
     { value: '1.5', unit: 'years', label: 'Manufacturing Engineering' },
@@ -109,7 +110,7 @@ export const impact = {
 } as const
 
 export const work = {
-  eyebrow: '02 — Selected work',
+  eyebrow: '02 · Selected work',
   heading: 'The vehicles.',
   note: 'Six programmes, six sets of body systems. Hover, tap or use the arrow keys to bring one into the light.',
   defaultVehicle: 'mahindra-maxx',
@@ -133,7 +134,7 @@ export const vehicles: Vehicle[] = [
     oem: 'Mahindra & Mahindra',
     type: 'SUV · 9/10-seat, taxi-oriented',
     launchYear: 2001,
-    review: 'The Bolero widened for the taxi trade — more seats, the same body-on-frame stamina.',
+    review: 'The Bolero widened for the taxi trade: more seats, the same body-on-frame stamina.',
     image: 'bolero',
     mass: 0.98,
   },
@@ -181,7 +182,7 @@ export const vehicles: Vehicle[] = [
 ]
 
 export const career = {
-  eyebrow: '03 — Career',
+  eyebrow: '03 · Career',
   heading: 'Thirty years, two companies.',
   lede: 'Forward from 1994: body systems at Mahindra & Mahindra, then Body & Trims for commercial vehicles at Tata Motors.',
 } as const
@@ -193,41 +194,43 @@ export const roles: Role[] = [
     title: 'DGM, Product Development (Body Systems)',
     start: '1994-08',
     end: '2012-02',
-    dates: '1994 — 2012',
+    dates: 'Aug 1994 to Feb 2012',
     tenure: '17 years 7 months',
     summary:
-      "Led the department for the design and development of body systems across Mahindra's range, building the capability behind Maxx, Bolero XL, Xylo and Maxximo.",
-  },
-  {
-    id: 'mahindra-central-qa',
-    org: 'Mahindra & Mahindra',
-    title: 'Senior Engineer, Central Quality Assurance',
-    start: '1999-01',
-    end: '2000-12',
-    dates: '1999 — 2000',
-    tenure: '1 year',
-    location: 'Nashik',
-    summary:
-      'One year in central quality at Nashik: managing NOVA-C, running manufacturing audits, sampling launches and planning quality for body manufacturing.',
-  },
-  {
-    id: 'mahindra-vehicle-engineering',
-    org: 'Mahindra & Mahindra',
-    title: 'Manager, Vehicle Engineering',
-    start: '2002-01',
-    end: '2004-12',
-    dates: '2002 — 2004',
-    tenure: '2 years',
-    summary:
-      'Designed, developed and implemented the Bolero XL and XLS, and shaped the first concept for what became the Xylo.',
+      "Head of Department for the design and development of body systems across Mahindra's range, building the capability behind Maxx, Bolero XL, Xylo and Maxximo.",
+    children: [
+      {
+        id: 'mahindra-central-qa',
+        org: 'Mahindra & Mahindra',
+        title: 'Senior Engineer, Central Quality Assurance',
+        start: '1999-01',
+        end: '2000-12',
+        dates: '1999 to 2000',
+        tenure: '1 year',
+        location: 'Nashik',
+        summary:
+          'Managed NOVA-C, manufacturing audits, launch sampling and quality planning for body manufacturing.',
+      },
+      {
+        id: 'mahindra-vehicle-engineering',
+        org: 'Mahindra & Mahindra',
+        title: 'Manager, Vehicle Engineering',
+        start: '2002-01',
+        end: '2004-12',
+        dates: '2002 to 2004',
+        tenure: '2 years',
+        summary:
+          'Designed, developed and implemented the Bolero XL and XLS, and shaped the first concept for what became the Xylo.',
+      },
+    ],
   },
   {
     id: 'mahindra-projects',
     org: 'Mahindra & Mahindra, Automotive Sector',
-    title: 'DGM — Projects (Product Development)',
+    title: 'DGM, Projects (Product Development)',
     start: '2012-02',
     end: '2014-02',
-    dates: '2012 — 2014',
+    dates: 'Feb 2012 to Feb 2014',
     tenure: '2 years 1 month',
     location: 'Mahindra World City, Chennai',
     summary:
@@ -239,7 +242,7 @@ export const roles: Role[] = [
     title: 'General Manager (Body & Trims Engg.)',
     start: '2014-02',
     end: null,
-    dates: '2014 — Present',
+    dates: 'Feb 2014 to Present',
     tenure: '12 years 9 months',
     location: 'Pune',
     summary:
@@ -248,17 +251,17 @@ export const roles: Role[] = [
 ]
 
 export const patent = {
-  eyebrow: '04 — Patent',
+  eyebrow: '04 · Patent',
   title: 'Impact Absorbing Structure for Vehicles',
   number: 'WO/2009/113096',
   date: '17 September 2009',
   datetime: '2009-09-17',
   note:
-    'A body structure that takes the energy of an impact before it reaches the cabin — the quiet, early work of passive safety, done in sheet metal.',
+    'A body structure that takes the energy of an impact before it reaches the cabin: the quiet, early work of passive safety, done in sheet metal.',
 } as const
 
 export const credentials = {
-  eyebrow: '05 — Credentials',
+  eyebrow: '05 · Credentials',
   heading: 'Continued study.',
   certifications: [
     'Fundamentals of AI & ML: Introduction to Artificial Intelligence',
@@ -271,25 +274,17 @@ export const credentials = {
     {
       qualification: 'B.E., Machine Tools Engineering',
       institution: 'K. J. Somaiya College of Engineering, University of Mumbai',
-      years: '1991 — 1994',
+      years: '1991 to 1994',
     },
     {
       qualification: 'M.B.A., Materials Management',
       institution: 'NIMS, Pune University',
-      years: '1996 — 1998',
+      years: '1996 to 1998',
     },
   ],
 } as const
 
-export const contact = {
-  eyebrow: '06 — Contact',
-  heading: 'Let’s talk.',
-  lede: 'For programme conversations, body engineering, or the next generation of engineers.',
-  action: 'Connect on LinkedIn',
-  resume: 'Download résumé',
-} as const
-
 export const footer = {
   year: '2026',
-  made: 'Built with care in Pune',
+  linkLabel: 'LinkedIn',
 } as const

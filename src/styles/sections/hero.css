@@ -1,6 +1,5 @@
 @layer sections {
   .hero {
-    --hero-split: clamp(1.5rem, 12vw, 12rem);
     position: relative;
     min-height: 100svh;
     display: flex;
@@ -29,10 +28,11 @@
   .hero__word {
     position: absolute;
     inset-inline: 0;
-    top: 26%;
+    top: calc(50% - 36px);
+    margin-top: -0.37em;
     z-index: 1;
-    display: flex;
-    justify-content: center;
+    display: block;
+    text-align: center;
     font-family: var(--font-display);
     font-style: italic;
     font-size: var(--fs-display);
@@ -41,31 +41,37 @@
     white-space: nowrap;
     color: var(--ink);
     user-select: none;
+    animation: hero-word-in 0.85s var(--ease-out) both;
   }
 
-  /* The wordmark is already split without JavaScript. The intro animation opens
-     the gap from zero; hover never depends on it. */
   .hero__word-part {
-    display: block;
-    will-change: transform;
-    transform: translateX(calc(var(--hero-split) * -1));
+    display: inline-block;
+    animation: hero-word-gap 0.8s var(--ease) 1.12s both;
+  }
+
+  .hero__word-part[data-word-part='lead'] {
+    --shift-x: -0.15em;
+    translate: -0.15em 0;
   }
 
   .hero__word-part[data-word-part='trail'] {
-    transform: translateX(var(--hero-split));
+    --shift-x: 0.15em;
+    translate: 0.15em 0;
   }
 
   .hero__portrait {
     position: absolute;
     inset-inline: 0;
-    bottom: 0;
+    top: calc(50% - 36px);
+    translate: 0 -50%;
     margin-inline: auto;
     width: max-content;
-    height: 94%;
+    height: 84.6%;
     z-index: 2;
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    animation: hero-portrait-in 0.8s var(--ease-out) 0.55s both;
   }
 
   .hero__portrait picture {
@@ -80,6 +86,8 @@
     object-position: bottom center;
     filter: grayscale(1);
     transition: filter 600ms var(--ease);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 88%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 88%, transparent 100%);
   }
 
   @media (hover: hover) {
@@ -146,11 +154,12 @@
     }
 
     .hero__word {
-      top: 28%;
+      top: calc(50% + 6svh);
     }
 
     .hero__portrait {
-      height: 90%;
+      top: calc(50% + 6svh);
+      height: 81%;
     }
 
     .hero__caption {
@@ -173,17 +182,14 @@
   }
 
   @media (max-width: 480px) {
-    .hero {
-      /* Keep both halves inside the viewport where the word nearly fills it. */
-      --hero-split: 9vw;
-    }
-
     .hero__portrait {
-      height: 92%;
+      top: calc(50% + 8svh);
+      height: 82.8%;
     }
 
     .hero__word {
-      top: 28%;
+      top: calc(50% + 8svh);
+      font-size: clamp(2.75rem, 14vw, 4.5rem);
     }
 
     .hero__caption {
@@ -201,14 +207,54 @@
     }
   }
 
-  /* The smallest screens need a smaller wordmark so neither half is cropped. */
+  /* The smallest screens need a smaller wordmark so it is not cropped. */
   @media (max-width: 360px) {
-    .hero {
-      --hero-split: 6vw;
+    .hero__word {
+      font-size: clamp(2.5rem, 14vw, 3.25rem);
+    }
+  }
+
+  /* Page-load introduction: word rises in, portrait follows, then the gap
+     between "Innov" and "ation" opens. Roughly two seconds in total. */
+  @keyframes hero-word-in {
+    from {
+      opacity: 0;
+      translate: 0 26px;
     }
 
-    .hero__word {
-      font-size: clamp(2.75rem, 17vw, 3.75rem);
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes hero-portrait-in {
+    from {
+      opacity: 0;
+      scale: 1.04;
+    }
+
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  @keyframes hero-word-gap {
+    from {
+      translate: 0 0;
+    }
+
+    to {
+      translate: var(--shift-x) 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__word,
+    .hero__portrait,
+    .hero__word-part {
+      animation: none;
     }
   }
 }

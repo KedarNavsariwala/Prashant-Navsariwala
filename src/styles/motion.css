@@ -14,14 +14,6 @@
     transform-origin: bottom center;
   }
 
-  /* Set only when the intro chunk is loading. It is removed in the same tick
-     that GSAP applies the real start states. */
-  .intro-pending .hero__word,
-  .intro-pending .hero__portrait,
-  .intro-pending .hero__caption > * {
-    opacity: 0;
-  }
-
   @media (prefers-reduced-motion: reduce) {
     .strip__item,
     .strip__item img,
@@ -30,12 +22,10 @@
     .strip__tick,
     .media__item,
     .hero__portrait img,
-    .contact__portrait img,
     .btn,
     .link-arrow,
     .nav,
     .nav__link,
-    .nav__resume,
     .nav__toggle-bar,
     .skip-link {
       transition: none;

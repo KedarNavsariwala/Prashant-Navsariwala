@@ -10,6 +10,49 @@
     padding-block: var(--section-y);
   }
 
+  /* Nav-linked sections fill the space under the fixed header, so an anchor
+     jump reveals the whole section in one screen. Career is intentionally
+     taller: it is the one section built to be scrolled through. */
+  .about,
+  .patent,
+  .credentials {
+    min-height: calc(100svh - var(--nav-h));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .about > .wrap,
+  .patent > .wrap,
+  .credentials > .wrap {
+    width: 100%;
+  }
+
+  /* Graph paper on the two quiet, typographic sections: a 28 px minor grid
+     with a 140 px major rule, both far too light to compete with the copy. */
+  .about,
+  .patent {
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(to right, rgb(0 0 0 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(0 0 0 / 0.05) 1px, transparent 1px),
+      linear-gradient(to right, rgb(0 0 0 / 0.028) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(0 0 0 / 0.028) 1px, transparent 1px);
+    background-size:
+      140px 140px,
+      140px 140px,
+      28px 28px,
+      28px 28px;
+  }
+
+  /* Laptop-height screens: trim the generous section padding so a full
+     section still fits under the header without shrinking the type. */
+  @media (min-width: 900px) and (max-height: 860px) {
+    .section {
+      padding-block: clamp(40px, 6vh, 80px);
+    }
+  }
+
   .section-head {
     display: grid;
     gap: 20px;

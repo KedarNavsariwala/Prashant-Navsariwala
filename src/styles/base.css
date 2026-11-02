@@ -7,7 +7,9 @@
 
   html {
     -webkit-text-size-adjust: 100%;
-    scroll-padding-top: calc(var(--nav-h) + 16px);
+    /* Anchors land the section flush under the fixed header, both natively and
+       through Lenis (which reads the nav height in motion.ts). */
+    scroll-padding-top: var(--nav-h);
   }
 
   body {
