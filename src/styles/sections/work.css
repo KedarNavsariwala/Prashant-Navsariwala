@@ -281,9 +281,7 @@
     padding: 18px 10px 22px;
     cursor: pointer;
     opacity: 0.45;
-    transition:
-      opacity 0.2s ease-out,
-      transform 0.2s ease-out;
+    transition: opacity 0.2s ease-out;
   }
 
   .strip__item:hover,
@@ -296,10 +294,6 @@
     outline-offset: -3px;
   }
 
-  .strip__item.is-active {
-    transform: translateY(-6px);
-  }
-
   .strip__item img {
     position: relative;
     z-index: 2;
@@ -308,84 +302,19 @@
     max-width: 100%;
     object-fit: contain;
     transform-origin: bottom center;
-    transition: transform 0.2s ease-out;
+    transition:
+      transform 0.2s ease-out,
+      filter 0.2s ease-out;
     filter: grayscale(1);
   }
 
-  .strip__item.is-active img,
-  .strip__item:hover img,
-  .strip__item:focus-visible img {
-    transform: scale(1.03);
+  .strip__item.is-active img {
     filter: none;
   }
 
-  .strip__pool {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    z-index: 1;
-    width: 160%;
-    height: 100%;
-    transform: translateX(-50%);
-    background: radial-gradient(
-      ellipse 60% 100% at 50% 100%,
-      rgb(255 255 255 / 1) 0%,
-      rgb(255 255 255 / 0.85) 45%,
-      rgb(255 255 255 / 0) 72%
-    );
-    opacity: 0;
-    transition: opacity 0.2s ease-out;
-    pointer-events: none;
-  }
-
-  .strip__item::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    z-index: 0;
-    width: 110%;
-    height: 130%;
-    transform: translateX(-50%) scaleY(0.4);
-    transform-origin: bottom center;
-    background: linear-gradient(to top, rgb(255 255 255 / 0.9), rgb(255 255 255 / 0));
-    clip-path: polygon(42% 100%, 58% 100%, 100% 0, 0 0);
-    opacity: 0;
-    transition:
-      opacity 0.2s ease-out,
-      transform 0.2s ease-out;
-    pointer-events: none;
-  }
-
-  .strip__item:hover .strip__pool,
-  .strip__item:focus-visible .strip__pool,
-  .strip__item.is-active .strip__pool {
-    opacity: 1;
-  }
-
-  .strip__item:hover::after,
-  .strip__item:focus-visible::after,
-  .strip__item.is-active::after {
-    opacity: 1;
-    transform: translateX(-50%) scaleY(1);
-  }
-
-  .strip__tick {
-    position: absolute;
-    left: 50%;
-    bottom: -1px;
-    z-index: 3;
-    width: 36px;
-    height: 4px;
-    background: var(--ink);
-    transform: translateX(-50%) scaleX(0);
-    transition: transform 0.2s ease-out;
-  }
-
-  .strip__item:hover .strip__tick,
-  .strip__item:focus-visible .strip__tick,
-  .strip__item.is-active .strip__tick {
-    transform: translateX(-50%) scaleX(1);
+  .strip__item:hover img,
+  .strip__item:focus-visible img {
+    transform: translateY(-3px);
   }
 
   /* responsive ----------------------------------------------------- */
@@ -517,13 +446,6 @@
       height: calc(44px * var(--mass));
     }
 
-    .strip__item.is-active {
-      transform: translateY(-4px);
-    }
-
-    .strip__tick {
-      width: 24px;
-    }
   }
 
   /* Small laptops and tablets: keep the stacked showroom, but let the stage

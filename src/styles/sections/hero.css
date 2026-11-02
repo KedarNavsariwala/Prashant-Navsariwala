@@ -28,8 +28,8 @@
   .hero__word {
     position: absolute;
     inset-inline: 0;
-    top: calc(50% - 36px);
-    margin-top: -0.37em;
+    top: calc(50% - 36px - 22%);
+    translate: 0 -50%;
     z-index: 1;
     display: block;
     text-align: center;
@@ -46,17 +46,17 @@
 
   .hero__word-part {
     display: inline-block;
-    animation: hero-word-gap 0.8s var(--ease) 1.12s both;
+    animation: hero-word-gap 0.65s var(--ease) 1.35s both;
   }
 
   .hero__word-part[data-word-part='lead'] {
-    --shift-x: -0.15em;
-    translate: -0.15em 0;
+    --shift-x: -0.275em;
+    translate: -0.275em 0;
   }
 
   .hero__word-part[data-word-part='trail'] {
-    --shift-x: 0.15em;
-    translate: 0.15em 0;
+    --shift-x: 0.275em;
+    translate: 0.275em 0;
   }
 
   .hero__portrait {
@@ -66,7 +66,7 @@
     translate: 0 -50%;
     margin-inline: auto;
     width: max-content;
-    height: 84.6%;
+    height: 78%;
     z-index: 2;
     display: flex;
     align-items: flex-end;
@@ -154,12 +154,12 @@
     }
 
     .hero__word {
-      top: calc(50% + 6svh);
+      top: calc(50% + 6svh - 22%);
     }
 
     .hero__portrait {
       top: calc(50% + 6svh);
-      height: 81%;
+      height: 75%;
     }
 
     .hero__caption {
@@ -184,11 +184,11 @@
   @media (max-width: 480px) {
     .hero__portrait {
       top: calc(50% + 8svh);
-      height: 82.8%;
+      height: 76.5%;
     }
 
     .hero__word {
-      top: calc(50% + 8svh);
+      top: calc(50% + 8svh - 22%);
       font-size: clamp(2.75rem, 14vw, 4.5rem);
     }
 
@@ -219,12 +219,12 @@
   @keyframes hero-word-in {
     from {
       opacity: 0;
-      translate: 0 26px;
+      translate: 0 calc(-50% + 26px);
     }
 
     to {
       opacity: 1;
-      translate: 0 0;
+      translate: 0 -50%;
     }
   }
 

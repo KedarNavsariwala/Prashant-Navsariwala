@@ -17,9 +17,6 @@
   @media (prefers-reduced-motion: reduce) {
     .strip__item,
     .strip__item img,
-    .strip__pool,
-    .strip__item::after,
-    .strip__tick,
     .media__item,
     .hero__portrait img,
     .btn,
@@ -33,10 +30,6 @@
 
     .strip__item {
       opacity: 1;
-    }
-
-    .strip__item.is-active {
-      transform: none;
     }
 
     .strip__item.is-active img,

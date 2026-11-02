@@ -74,4 +74,30 @@ Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and
 publishes `dist/` to GitHub Pages. The build is fully static; the only
 requirement is Node 22 or newer.
 
-Site URL: <https://prashant-navsariwala.github.io/>
+Site URL: <https://prashantnavsariwala.in/>
+
+### Custom domain
+
+`public/CNAME` already points the site at `prashantnavsariwala.in`. To finish the
+DNS and Pages setup:
+
+1. In the GitHub repository, open **Settings → Pages**. Set **Source** to
+   **GitHub Actions**, enter `prashantnavsariwala.in` under **Custom domain**, and
+   enable **Enforce HTTPS**.
+2. At the domain registrar, point the apex domain at GitHub Pages with these
+   `A` records:
+   - `185.199.108.153`
+   - `185.199.109.153`
+   - `185.199.110.153`
+   - `185.199.111.153`
+
+   And these `AAAA` records if IPv6 is supported:
+   - `2606:50c0:8000::153`
+   - `2606:50c0:8001::153`
+   - `2606:50c0:8002::153`
+   - `2606:50c0:8003::153`
+3. Optionally, add a `CNAME` record for `www` pointing to
+   `kedarnavsariwala.github.io` and redirect `www` to the apex domain.
+
+DNS can take up to 24 hours to propagate; GitHub issues the HTTPS certificate
+automatically once the domain resolves.

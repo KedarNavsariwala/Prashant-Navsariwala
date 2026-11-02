@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://prashant-navsariwala.github.io/sitemap.xml
+Sitemap: https://prashantnavsariwala.in/sitemap.xml

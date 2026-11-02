@@ -38,6 +38,9 @@ const dims: Record<ImageKey, Dims> = {
   jeeto: { width: 1024, height: 768 },
   signa: { width: 1045, height: 784 },
   patent: { width: 1408, height: 768 },
+  'mahindra-hq': { width: 1920, height: 1080 },
+  'mahindra-chennai': { width: 2048, height: 1274 },
+  'tata-gate': { width: 1200, height: 630 },
 }
 
 type PictureOptions = {
@@ -235,7 +238,6 @@ function renderHero() {
           </ul>
           <div class="hero__actions">
             <a class="btn btn--glass btn--glass-dark" href="${hero.actions.primary.href}">${hero.actions.primary.label}</a>
-            <a class="btn btn--glass" href="${site.resume}" download type="application/pdf">${hero.actions.secondary.label} <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </div>
@@ -340,10 +342,8 @@ function renderStrip() {
           ${vehicles
             .map(
               (vehicle, index) => `<button class="strip__item${index === 0 ? ' is-active' : ''}" type="button" data-vehicle="${vehicle.id}" aria-pressed="${index === 0}" aria-controls="work-panel" tabindex="${index === 0 ? '0' : '-1'}" style="--mass:${vehicle.mass}">
-            <span class="strip__pool" aria-hidden="true"></span>
             <img src="media/${media[vehicle.image].base}-420.webp" srcset="${srcset(vehicle.image, 'webp')}" sizes="(min-width: 768px) 150px, 88px" width="${dims[vehicle.image].width}" height="${dims[vehicle.image].height}" alt="" loading="lazy" decoding="async">
             <span class="sr-only">${esc(vehicle.name)}, ${esc(vehicle.type)}, launched ${vehicle.launchYear}</span>
-            <i class="strip__tick" aria-hidden="true"></i>
           </button>`,
             )
             .join('')}

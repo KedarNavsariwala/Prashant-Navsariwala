@@ -50,7 +50,7 @@ export const site = {
   name: 'Prashant Navsariwala',
   role: 'Automotive Product Design and Development Professional',
   location: 'Pune, Maharashtra, India',
-  url: 'https://prashant-navsariwala.github.io/',
+  url: 'https://prashantnavsariwala.in/',
   title: 'Prashant Navsariwala | Automotive Product Design & Development',
   description:
     'Thirty years in automotive body engineering: vehicle programmes, body systems and a patent, from Mahindra & Mahindra to Tata Motors.',
@@ -80,7 +80,6 @@ export const hero = {
   lede: 'I have spent thirty years shaping the body, closures and cockpits of the vehicles India drives.',
   actions: {
     primary: { label: 'Explore', href: '#work' },
-    secondary: { label: 'Download résumé', href: 'resume.pdf' },
   },
   meta: ['30 years in the industry', '25 years leading programmes'],
 } as const
@@ -198,6 +197,8 @@ export const roles: Role[] = [
     tenure: '17 years 7 months',
     summary:
       "Head of Department for the design and development of body systems across Mahindra's range, building the capability behind Maxx, Bolero XL, Xylo and Maxximo.",
+    image: 'mahindra-hq',
+    imageCaption: 'Mahindra Towers, Mumbai',
     children: [
       {
         id: 'mahindra-central-qa',
@@ -235,6 +236,8 @@ export const roles: Role[] = [
     location: 'Mahindra World City, Chennai',
     summary:
       'Project leader for the Mahindra Jeeto, taking a new mini-truck platform from programme definition to launch with the Chennai product development team.',
+    image: 'mahindra-chennai',
+    imageCaption: 'Mahindra campus, Chennai',
   },
   {
     id: 'tata-body-trims',
@@ -247,6 +250,8 @@ export const roles: Role[] = [
     location: 'Pune',
     summary:
       'Leads the Centre of Competence for Body & Trims in commercial vehicles at Tata Motors, owning body engineering capability, delivery and standards across programmes.',
+    image: 'tata-gate',
+    imageCaption: 'Tata Motors facility entrance',
   },
 ]
 

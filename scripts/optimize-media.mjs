@@ -59,7 +59,10 @@ async function defringe(source) {
 const total = []
 
 for (const [key, image] of Object.entries(config.images)) {
-  const source = await defringe(image.source)
+  const original = await sharp(image.source).metadata()
+  const hasTransparency =
+    original.hasAlpha === true && !(await sharp(image.source).stats()).isOpaque
+  const source = hasTransparency ? await defringe(image.source) : sharp(image.source)
   const clean = await source.png().toBuffer()
   const meta = await sharp(clean).metadata()
 

@@ -25,13 +25,17 @@ jobs:
           node-version: 22
           cache: npm
 
+      # Enable Pages for the repository if it has not been turned on yet, and
+      # apply the custom-domain base path before the build.
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - run: npm ci
 
       # Regenerates the responsive AVIF/WebP set and the social card, then
       # type-checks and builds the static site into dist/.
       - run: npm run build
-
-      - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -39,6 +39,21 @@
       "source": "Assets/Patent_side-img.png",
       "base": "patent",
       "widths": [640, 960]
+    },
+    "mahindra-hq": {
+      "source": "Assets/Mahindra-Mahindra.jpg",
+      "base": "mahindra-hq",
+      "widths": [800, 1200]
+    },
+    "mahindra-chennai": {
+      "source": "Assets/mandmchennai.jpg",
+      "base": "mahindra-chennai",
+      "widths": [800, 1200]
+    },
+    "tata-gate": {
+      "source": "Assets/Tatamotorgate.webp",
+      "base": "tata-gate",
+      "widths": [600, 900, 1200]
     }
   }
 }

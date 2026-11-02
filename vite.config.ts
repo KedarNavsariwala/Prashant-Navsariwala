@@ -20,7 +20,8 @@ function staticSite(): Plugin {
 }
 
 export default defineConfig({
-  base: './',
+  // Served from the root of the custom domain (prashantnavsariwala.in).
+  base: '/',
   plugins: [staticSite()],
   build: {
     target: 'es2022',

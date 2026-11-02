@@ -76,18 +76,9 @@ function initAnchors(lenis: Lenis, navHeight: number) {
 }
 
 function heroParallax() {
-  gsap.to('.hero__word', {
-    yPercent: -14,
-    ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-  })
-
-  gsap.to('.hero__portrait', {
-    yPercent: -7,
-    ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-  })
-
+  // The word and portrait run their own CSS introduction (translate, scale and
+  // gap). GSAP must not write transforms to those elements or it freezes the
+  // CSS animation and cancels the centring, so only the caption is scroll-linked.
   gsap.to('.hero__caption', {
     autoAlpha: 0,
     y: -10,
