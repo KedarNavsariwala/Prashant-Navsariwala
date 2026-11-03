@@ -1,120 +1,116 @@
 @layer sections {
-  .career__grid {
-    display: grid;
-    grid-template-columns: 45% minmax(0, 1fr);
-    align-items: start;
-    gap: clamp(32px, 5vw, 80px);
-    margin-top: clamp(40px, 6vw, 80px);
+  .career {
+    /* How far the pinned stage travels for each milestone, and the pause at
+       the end before the section releases into the patent. */
+    --career-step: 85svh;
+    --career-tail: 20svh;
   }
 
-  .career__media {
-    position: sticky;
-    top: 0;
-    height: 100svh;
+  /* The section label and the milestone counter are the whole header: the
+     pinned stage gets the height that the old title and lede took. */
+  .career__head {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(24px, 4vw, 56px);
   }
 
-  .media__frame {
+  .career__meter {
+    flex: 0 0 auto;
+    width: clamp(120px, 13vw, 172px);
+  }
+
+  .career__count {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: clamp(1.75rem, 2.8vw, 2.6rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .career__count-sep {
+    font-size: 0.5em;
+    color: var(--ink-30);
+    letter-spacing: 0;
+  }
+
+  .career__meter-rule {
+    display: block;
+    height: 1px;
+    margin-top: 12px;
+    background: var(--ink-30);
+    overflow: hidden;
+  }
+
+  .career__meter-rule > span {
+    display: block;
+    height: 100%;
+    background: var(--ink);
+    transform: scaleX(var(--career-progress, 0));
+    transform-origin: 0 50%;
+  }
+
+  .career__stage {
+    margin-top: clamp(32px, 5vw, 64px);
+  }
+
+  /* Positioned so the sr-only copies of the typed copy (absolute, nowrap) are
+     contained here instead of escaping the carousel's clip and widening the
+     page. */
+  .career__slide {
     position: relative;
-    aspect-ratio: 3 / 2;
+    min-width: 0;
+  }
+
+  .career__figure {
+    margin: 0;
+    min-width: 0;
+  }
+
+  .career__frame {
+    position: relative;
     width: 100%;
-    max-width: calc((100svh - 192px) * 1.5);
+    aspect-ratio: 4 / 3;
     background: var(--surface);
     overflow: hidden;
   }
 
-  .media__item {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition:
-      opacity 0.4s ease,
-      visibility 0s linear 0.4s;
-  }
-
-  .media__item.is-active {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.4s ease;
-  }
-
-  .media__img {
+  .career__frame .media__img {
     width: 100%;
     height: 100%;
   }
 
-  .media__img img {
+  .career__frame .media__img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: translate3d(0, var(--career-drift, 0px), 0) scale(1.055);
   }
 
-  .media__caption {
-    margin-top: 14px;
-    font-size: var(--fs-small);
+  .career__frame .plate {
+    position: absolute;
+    inset: 0;
+  }
+
+  .career__caption {
+    margin-top: 10px;
+    font-size: 0.75rem;
     color: var(--ink-60);
     font-variant-numeric: tabular-nums;
   }
 
-  .career__timeline {
-    position: relative;
-    padding-left: clamp(28px, 3vw, 44px);
-    padding-block: 4px;
+  .career__copy {
+    min-width: 0;
   }
 
-  .spine-rule {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: var(--ink-30);
-  }
-
-  .spine {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 2px;
-    height: 100%;
-    overflow: visible;
-  }
-
-  .spine path {
-    fill: none;
-    stroke: var(--ink);
-    stroke-width: 1;
-  }
-
-  .roles {
-    display: grid;
-    gap: clamp(40px, 5vw, 64px);
-  }
-
-  .role {
-    position: relative;
-    max-width: 62ch;
-  }
-
-  .role::before {
-    content: '';
-    position: absolute;
-    left: calc(-1 * clamp(28px, 3vw, 44px) - 4px);
-    top: 7px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--ink);
-  }
-
-  .role__dates {
+  .career__dates {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 6px 14px;
+    gap: 4px 12px;
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.08em;
@@ -123,44 +119,57 @@
     font-variant-numeric: tabular-nums;
   }
 
-  .role__tenure {
-    color: var(--ink-60);
+  .career__tenure {
     letter-spacing: 0.02em;
     text-transform: none;
     font-weight: 400;
   }
 
-  .role__title {
+  /* The visible string and its transparent twin share a cell, so the column
+     keeps its full height while the typewriter works. */
+  .career__type {
+    display: grid;
+  }
+
+  .career__type > .career__type-ghost,
+  .career__type > .career__type-live {
+    grid-area: 1 / 1;
+    min-width: 0;
+  }
+
+  .career__type-ghost {
+    visibility: hidden;
+  }
+
+  .career__role-title {
     margin-top: 10px;
     font-family: var(--font-sans);
-    font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+    font-size: clamp(1.35rem, 1.9vw, 1.75rem);
     font-weight: 600;
-    line-height: 1.25;
+    line-height: 1.2;
     letter-spacing: -0.01em;
   }
 
-  .role__org {
-    margin-top: 6px;
+  .career__org {
+    margin-top: 8px;
     font-size: 0.9375rem;
     color: var(--ink-60);
   }
 
-  .role__summary {
-    margin-top: 14px;
+  .career__summary {
+    margin-top: 16px;
     font-size: 1rem;
     line-height: 1.55;
-    max-width: 54ch;
+    max-width: 52ch;
   }
 
-  .role__subroles {
-    display: grid;
-    gap: 18px;
-    margin-top: 24px;
-    padding-left: clamp(18px, 2.2vw, 28px);
-    border-left: 1px solid var(--ink-30);
+  .career__subroles {
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid var(--ink-30);
   }
 
-  .role__subroles-label {
+  .career__subroles-label {
     font-size: 0.6875rem;
     font-weight: 500;
     letter-spacing: 0.08em;
@@ -168,105 +177,336 @@
     color: var(--ink-60);
   }
 
-  .subroles {
+  .career__subrole-list {
     display: grid;
-    gap: 18px;
+    gap: 7px;
+    margin-top: 9px;
   }
 
-  .subrole {
-    position: relative;
-  }
-
-  .subrole::before {
-    content: '';
-    position: absolute;
-    left: calc(-1 * clamp(18px, 2.2vw, 28px) - 3px);
-    top: 6px;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--ink-30);
-  }
-
-  .subrole__dates {
+  .career__subrole {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 4px 10px;
+    gap: 2px 10px;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+  }
+
+  .career__subrole-dates {
     font-size: 0.6875rem;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--ink-60);
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
   }
 
-  .subrole__title {
-    margin-top: 6px;
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
+  .career__subrole-title {
+    font-weight: 500;
   }
 
-  .subrole__location {
-    margin-top: 2px;
-    font-size: 0.875rem;
+  .career__subrole-location {
     color: var(--ink-60);
   }
 
-  .subrole__summary {
-    margin-top: 8px;
-    font-size: 0.9375rem;
-    line-height: 1.55;
-    color: var(--ink-60);
-    max-width: 54ch;
-  }
-
-  .role__media {
+  .career__dots {
     display: none;
-    position: relative;
-    aspect-ratio: 16 / 9;
-    background: var(--surface);
-    margin-bottom: 20px;
-    overflow: hidden;
   }
 
-  .role__media .plate {
-    position: absolute;
+  .career__dot {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
   }
+
+  .career__dot span {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--ink-30);
+    transition:
+      width 0.25s var(--ease),
+      background-color 0.25s var(--ease);
+  }
+
+  .career__dot.is-active span,
+  .career__dot[aria-current='true'] span {
+    width: 18px;
+    background: var(--ink);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* mobile: a swipeable card rail                                       */
+  /* ------------------------------------------------------------------ */
 
   @media (max-width: 899px) {
-    .career__grid {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-
-    .career__media {
+    .career__meter {
       display: none;
     }
 
-    .role__media {
-      display: block;
+    .career__stage {
+      margin-top: 28px;
+      margin-inline: calc(var(--pad) * -1);
     }
 
-    .media__frame {
-      max-width: none;
+    .career__slides {
+      display: flex;
+      gap: 14px;
+      padding-inline: var(--pad);
+      padding-bottom: 4px;
+      overflow-x: auto;
+      scroll-padding-inline: var(--pad);
+      scroll-snap-type: x mandatory;
+      overscroll-behavior-inline: contain;
+      scrollbar-width: none;
+    }
+
+    .career__slides::-webkit-scrollbar {
+      display: none;
+    }
+
+    .career__slides:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 6px;
+    }
+
+    .career__slide {
+      flex: 0 0 min(86vw, 520px);
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      border: 1px solid var(--ink-30);
+      background: var(--bg);
+    }
+
+    .career__caption {
+      padding-inline: 18px;
+    }
+
+    .career__copy {
+      padding: 18px 18px 22px;
+    }
+
+    .career__role-title {
+      margin-top: 8px;
+      font-size: 1.25rem;
+    }
+
+    .career__summary {
+      margin-top: 12px;
+      font-size: 0.9375rem;
+    }
+
+    .career__subroles {
+      margin-top: 16px;
+      padding-top: 12px;
+    }
+
+    .career__dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      margin-top: 12px;
     }
   }
 
-  @media (max-width: 480px) {
-    .career__timeline {
-      padding-left: 24px;
+  /* ------------------------------------------------------------------ */
+  /* desktop fallback: a complete stacked reading list                   */
+  /* ------------------------------------------------------------------ */
+
+  @media (min-width: 900px) {
+    html:not(.is-motion) .career__meter {
+      display: none;
     }
 
-    .role::before {
-      left: -28px;
+    .career__stage {
+      margin-top: clamp(36px, 5.5vw, 72px);
     }
 
-    .role__summary {
+    .career__slides {
+      display: grid;
+      gap: clamp(48px, 6vw, 80px);
+    }
+
+    .career__slide {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      align-items: center;
+      gap: clamp(32px, 5vw, 80px);
+    }
+
+    .career__figure {
+      width: 100%;
+    }
+
+    .career__copy {
+      max-width: 56ch;
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* desktop with motion: the locked, one-milestone stage                */
+  /* ------------------------------------------------------------------ */
+
+  @media (min-width: 900px) {
+    html.is-motion .career {
+      height: calc(
+        100svh - var(--nav-h) + (var(--career-steps) - 1) * var(--career-step) +
+          var(--career-tail)
+      );
+      padding-block: 0;
+    }
+
+    html.is-motion .career__pin {
+      position: sticky;
+      top: var(--nav-h);
+      height: calc(100svh - var(--nav-h));
+      overflow: clip;
+      background: var(--bg);
+    }
+
+    html.is-motion .career__inner {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: clamp(14px, 2.2svh, 28px);
+      height: 100%;
+      padding-block: clamp(12px, 2.4svh, 32px);
+    }
+
+    html.is-motion .career__head {
+      gap: clamp(20px, 3.2vw, 48px);
+      align-items: center;
+    }
+
+    html.is-motion .career__meter {
+      width: clamp(112px, 11vw, 152px);
+    }
+
+    html.is-motion .career__stage {
+      display: grid;
+      min-height: 0;
+      margin-top: 0;
+      margin-inline: 0;
+    }
+
+    html.is-motion .career__slides {
+      display: grid;
+      gap: 0;
+      min-height: 0;
+      padding: 0;
+      overflow: visible;
+    }
+
+    html.is-motion .career__slide {
+      grid-area: 1 / 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      align-items: center;
+      gap: clamp(28px, 4.6vw, 72px);
+      min-height: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, 12px, 0);
+      pointer-events: none;
+      transition:
+        opacity 0.55s var(--ease),
+        transform 0.55s var(--ease),
+        visibility 0s linear 0.55s;
+    }
+
+    html.is-motion .career__slide.is-active {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      pointer-events: auto;
+      transition:
+        opacity 0.55s var(--ease),
+        transform 0.55s var(--ease);
+    }
+
+    html.is-motion .career__figure {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+    }
+
+    /* Fill the stage and crop rather than shrink the photograph into a
+       letterbox. The caption keeps its own line under the frame. */
+    html.is-motion .career__frame {
+      flex: 1 1 auto;
+      min-height: 0;
+      aspect-ratio: auto;
+    }
+
+    html.is-motion .career__caption {
+      flex: 0 0 auto;
+    }
+
+    html.is-motion .career__copy {
+      /* Centre the copy against the stage so it sits with the photograph
+         rather than hanging from the header. */
+      align-self: center;
+      max-height: 100%;
+    }
+
+    html.is-motion .career__role-title {
+      font-size: clamp(1.375rem, 1.85vw, 1.75rem);
+    }
+
+    html.is-motion .career__dots {
+      display: none;
+    }
+
+    /* The outgoing photograph softens as it fades, so the crossfade reads as a
+       change of focus rather than a hard cut. */
+    html.is-motion .career__frame .media__img img {
+      transition: filter 0.55s var(--ease);
+    }
+
+    html.is-motion .career__slide:not(.is-active) .career__frame .media__img img {
+      filter: blur(5px);
+    }
+  }
+
+  /* Short laptop screens: keep the header, image and full copy in one view. */
+  @media (min-width: 900px) and (max-height: 760px) {
+    html.is-motion .career__inner {
+      gap: 12px;
+      padding-block: 12px;
+    }
+
+    html.is-motion .career__summary {
       font-size: 0.9375rem;
+    }
+
+    html.is-motion .career__role-title {
+      font-size: 1.25rem;
+    }
+
+    html.is-motion .career__subroles {
+      margin-top: 14px;
+      padding-top: 10px;
+    }
+  }
+
+  @media (min-width: 900px) and (max-height: 660px) {
+    html.is-motion .career__subrole-list {
+      gap: 4px;
+    }
+
+    html.is-motion .career__subrole {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .career__dot span {
+      transition: none;
     }
   }
 }

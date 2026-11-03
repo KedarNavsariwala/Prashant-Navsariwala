@@ -91,11 +91,25 @@ function roleMedia(role: Role, index: number) {
   if (role.image) {
     return picture(role.image as ImageKey, {
       alt: role.imageCaption ?? roleCaption(role),
-      sizes: '(min-width: 768px) 45vw, 100vw',
+      sizes: '(min-width: 900px) 58vw, 88vw',
       className: 'media__img',
     })
   }
   return plate(role, index)
+}
+
+/**
+ * The role title and summary are typed out on the pinned desktop stage. The
+ * visible string and a transparent sizing copy share one grid cell so the panel
+ * never reflows as characters arrive; the complete text stays available to
+ * assistive technology in the sr-only span.
+ */
+function typedRoleText(tag: 'h3' | 'p', className: string, text: string) {
+  return `<${tag} class="${className} career__type" data-career-type>
+          <span class="sr-only">${esc(text)}</span>
+          <span class="career__type-ghost" aria-hidden="true">${esc(text)}</span>
+          <span class="career__type-live" aria-hidden="true">${esc(text)}</span>
+        </${tag}>`
 }
 
 /* ------------------------------------------------------------------ */
@@ -221,6 +235,7 @@ function renderHero() {
         <h1 class="sr-only" id="hero-name">${esc(hero.name)}</h1>
 
         <div class="hero__stage">
+          <div class="hero__grid" data-hero-grid aria-hidden="true"></div>
           <span class="hero__word" aria-hidden="true"><span class="hero__word-part" data-word-part="lead">${esc(hero.display.slice(0, hero.displaySplit))}</span><span class="hero__word-part" data-word-part="trail">${esc(hero.display.slice(hero.displaySplit))}</span></span>
           <figure class="hero__portrait">
             ${picture(site.portrait, {
@@ -377,16 +392,15 @@ function renderWork() {
 
 function renderSubroles(role: Role) {
   if (!role.children?.length) return ''
-  return `<div class="role__subroles">
-          <p class="role__subroles-label">Roles within this tenure</p>
-          <ol class="subroles">
+  return `<div class="career__subroles">
+          <p class="career__subroles-label">Roles within this tenure</p>
+          <ol class="career__subrole-list">
             ${role.children
               .map(
-                (child) => `<li class="subrole">
-              <p class="subrole__dates">${esc(child.dates)}${child.tenure ? ` <span class="role__tenure">${esc(child.tenure)}</span>` : ''}</p>
-              <h4 class="subrole__title">${esc(child.title)}</h4>
-              ${child.location ? `<p class="subrole__location">${esc(child.location)}</p>` : ''}
-              <p class="subrole__summary">${esc(child.summary)}</p>
+                (child) => `<li class="career__subrole">
+              <span class="career__subrole-dates">${esc(child.dates)}</span>
+              <span class="career__subrole-title">${esc(child.title)}</span>
+              ${child.location ? `<span class="career__subrole-location">${esc(child.location)}</span>` : ''}
             </li>`,
               )
               .join('')}
@@ -395,51 +409,55 @@ function renderSubroles(role: Role) {
 }
 
 function renderCareer() {
-  const mediaItems = roles
+  const slides = roles
     .map(
-      (role, index) => `<div class="media__item${index === 0 ? ' is-active' : ''}" data-role-media="${role.id}">
-          ${roleMedia(role, index)}
-        </div>`,
-    )
-    .join('')
+      (role, index) => `<li class="career__slide${index === 0 ? ' is-active' : ''}" id="career-${role.id}" data-career-slide="${role.id}">
+        <figure class="career__figure">
+          <div class="career__frame">
+            ${roleMedia(role, index)}
+          </div>
+          <figcaption class="career__caption">${esc(role.imageCaption ?? roleCaption(role))}</figcaption>
+        </figure>
 
-  const cards = roles
-    .map(
-      (role, index) => `<li class="role" data-role="${role.id}" data-reveal>
-        <div class="role__media"${role.image ? '' : ' aria-hidden="true"'}>${roleMedia(role, index)}</div>
-        <p class="role__dates">${esc(role.dates)}${role.tenure ? ` <span class="role__tenure">${esc(role.tenure)}</span>` : ''}</p>
-        <h3 class="role__title">${esc(role.title)}</h3>
-        <p class="role__org">${esc(role.org)}${role.location ? ` <span class="role__location">· ${esc(role.location)}</span>` : ''}</p>
-        <p class="role__summary">${esc(role.summary)}</p>
-        ${renderSubroles(role)}
+        <div class="career__copy">
+          <p class="career__dates">${esc(role.dates)}${role.tenure ? ` <span class="career__tenure">${esc(role.tenure)}</span>` : ''}</p>
+          ${typedRoleText('h3', 'career__role-title', role.title)}
+          <p class="career__org">${esc(role.org)}${role.location ? ` <span class="career__location">· ${esc(role.location)}</span>` : ''}</p>
+          ${typedRoleText('p', 'career__summary', role.summary)}
+          ${renderSubroles(role)}
+        </div>
       </li>`,
     )
     .join('')
 
-  return `<section class="section career" id="career" aria-labelledby="career-title">
-      <div class="wrap">
-        <div class="section-head" data-reveal>
-          <p class="eyebrow">${esc(career.eyebrow)}</p>
-          <h2 id="career-title">${esc(career.heading)}</h2>
-          <p class="section-head__lede">${esc(career.lede)}</p>
-        </div>
+  const dots = roles
+    .map(
+      (role, index) => `<a class="career__dot${index === 0 ? ' is-active' : ''}" href="#career-${role.id}" data-career-dot="${index}" aria-label="Show milestone ${index + 1} of ${roles.length}: ${esc(role.title)}"${index === 0 ? ' aria-current="true"' : ''}>
+        <span aria-hidden="true"></span>
+      </a>`,
+    )
+    .join('')
 
-        <div class="career__grid">
-          <div class="career__media" data-career-media aria-hidden="true">
-            <div class="media__frame">
-              ${mediaItems}
+  return `<section class="section career" id="career" data-career aria-labelledby="career-title" style="--career-steps: ${roles.length}">
+      <div class="career__pin">
+        <div class="wrap career__inner">
+          <header class="career__head">
+            <h2 class="sr-only" id="career-title">Career</h2>
+            <p class="eyebrow">${esc(career.eyebrow)}</p>
+            <div class="career__meter" aria-hidden="true">
+              <p class="career__count"><span data-career-index>01</span><span class="career__count-sep">/</span><span>${String(roles.length).padStart(2, '0')}</span></p>
+              <span class="career__meter-rule"><span></span></span>
             </div>
-            <p class="media__caption" data-career-caption>${esc(roleCaption(roles[0]))}</p>
-          </div>
+          </header>
 
-          <div class="career__timeline">
-            <span class="spine-rule" aria-hidden="true"></span>
-            <svg class="spine" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 2 100">
-              <path d="M1 0V100" pathLength="1" vector-effect="non-scaling-stroke"></path>
-            </svg>
-            <ol class="roles">
-              ${cards}
+          <div class="career__stage">
+            <ol class="career__slides" data-career-track tabindex="0" aria-label="Career milestones">
+              ${slides}
             </ol>
+
+            <nav class="career__dots" aria-label="Career milestones">
+              ${dots}
+            </nav>
           </div>
         </div>
       </div>

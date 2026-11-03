@@ -25,10 +25,26 @@
     min-height: clamp(480px, 64svh, 760px);
   }
 
+  .hero__grid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%);
+  }
+
+  .hero__grid-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
   .hero__word {
     position: absolute;
     inset-inline: 0;
-    top: calc(50% - 36px - 22%);
+    top: calc(50% - 36px - 19%);
     translate: 0 -50%;
     z-index: 1;
     display: block;
@@ -154,7 +170,7 @@
     }
 
     .hero__word {
-      top: calc(50% + 6svh - 22%);
+      top: calc(50% + 6svh - 19%);
     }
 
     .hero__portrait {
@@ -188,7 +204,7 @@
     }
 
     .hero__word {
-      top: calc(50% + 8svh - 22%);
+      top: calc(50% + 8svh - 19%);
       font-size: clamp(2.75rem, 14vw, 4.5rem);
     }
 

@@ -9,6 +9,10 @@ import Lenis from 'lenis'
 export function initMotion() {
   gsap.registerPlugin(ScrollTrigger)
 
+  // CSS uses this to opt into the pinned career layout only when the motion
+  // chunk actually loaded. Without it, everything stays a readable stack.
+  document.documentElement.classList.add('is-motion')
+
   // Anchor jumps land the section flush under the fixed header.
   const navHeight = document.querySelector<HTMLElement>('.nav')?.offsetHeight ?? 64
 
@@ -26,7 +30,7 @@ export function initMotion() {
   initAnchors(lenis, navHeight)
   heroParallax()
   reveals()
-  spine()
+  careerStage(navHeight)
   counters()
 
   const refresh = () => ScrollTrigger.refresh()
@@ -141,18 +145,200 @@ function reveals() {
   })
 }
 
-function spine() {
-  // The track is a light rule and the ink line grows over it. Scaling the
-  // wrapper (not dashing the path) keeps the stroke pixel-crisp at any height.
-  gsap.from('.spine', {
-    scaleY: 0,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.career__timeline',
-      start: 'top 70%',
-      end: 'bottom 70%',
-      scrub: true,
-    },
+type TypedItem = {
+  live: HTMLElement
+  full: string
+  /** Per-character pace, so a long paragraph still lands in about a second. */
+  interval: number
+}
+
+/**
+ * The career section locks under the header while the reader crosses it. CSS
+ * sticky does the locking; ScrollTrigger only reports progress. The active
+ * milestone crossfades, the image drifts inside its mask, and the copy types
+ * itself in on the way down. Scrolling back up restores full copy immediately.
+ */
+function careerStage(navHeight: number) {
+  const section = document.querySelector<HTMLElement>('[data-career]')
+  const slides = Array.from(document.querySelectorAll<HTMLElement>('[data-career-slide]'))
+  const counter = section?.querySelector<HTMLElement>('[data-career-index]')
+
+  if (!section || !slides.length) return
+
+  const matchMedia = gsap.matchMedia()
+
+  matchMedia.add('(min-width: 900px)', () => {
+    const typed = new Map<number, TypedItem[]>()
+    const completed = new Set<number>()
+
+    slides.forEach((slide, index) => {
+      const items = Array.from(slide.querySelectorAll<HTMLElement>('[data-career-type]'))
+        .map((element) => {
+          const live = element.querySelector<HTMLElement>('.career__type-live')
+          if (!live) return null
+          const full = live.textContent ?? ''
+          return {
+            live,
+            full,
+            interval: Math.round(Math.min(18, Math.max(7, 1100 / Math.max(1, full.length)))),
+          }
+        })
+        .filter((item): item is TypedItem => item !== null)
+
+      typed.set(index, items)
+    })
+
+    let activeIndex = -1
+    let typingFrame = 0
+    let typingToken = 0
+
+    const cancelTyping = () => {
+      if (typingFrame) {
+        cancelAnimationFrame(typingFrame)
+        typingFrame = 0
+      }
+      typingToken += 1
+    }
+
+    const showFull = (index: number) => {
+      cancelTyping()
+
+      typed.get(index)?.forEach((item) => {
+        item.live.textContent = item.full
+      })
+
+      completed.add(index)
+    }
+
+    const typeSlide = (index: number) => {
+      if (completed.has(index)) {
+        showFull(index)
+        return
+      }
+
+      const items = typed.get(index)
+      if (!items?.length) return
+
+      cancelTyping()
+      const run = typingToken
+      items.forEach((item) => {
+        item.live.textContent = ''
+      })
+
+      let itemIndex = 0
+      let charIndex = 0
+      let last = performance.now()
+
+      const tick = (now: number) => {
+        if (run !== typingToken) return
+
+        const item = items[itemIndex]
+        if (!item) {
+          completed.add(index)
+          typingFrame = 0
+          return
+        }
+
+        const elapsed = now - last
+        if (elapsed >= item.interval) {
+          const steps = Math.max(1, Math.floor(elapsed / item.interval))
+          last = now
+          charIndex = Math.min(item.full.length, charIndex + steps)
+          item.live.textContent = item.full.slice(0, charIndex)
+
+          if (charIndex >= item.full.length) {
+            itemIndex += 1
+            charIndex = 0
+
+            if (itemIndex >= items.length) {
+              completed.add(index)
+              typingFrame = 0
+              return
+            }
+          }
+        }
+
+        typingFrame = requestAnimationFrame(tick)
+      }
+
+      typingFrame = requestAnimationFrame(tick)
+    }
+
+    const setSlide = (index: number) => {
+      slides.forEach((slide, slideIndex) => {
+        const active = slideIndex === index
+        slide.classList.toggle('is-active', active)
+        if (active) slide.removeAttribute('aria-hidden')
+        else slide.setAttribute('aria-hidden', 'true')
+      })
+
+      if (counter) counter.textContent = String(index + 1).padStart(2, '0')
+    }
+
+    const activate = (index: number, direction: number) => {
+      if (index === activeIndex) return
+
+      activeIndex = index
+      setSlide(index)
+
+      if (direction > 0) typeSlide(index)
+      else showFull(index)
+    }
+
+    setSlide(0)
+    showFull(0)
+    section.style.setProperty('--career-progress', '0')
+    slides[0]?.style.setProperty('--career-drift', '9px')
+
+    // Every callback reads the live progress, so a jump into the middle of the
+    // section (an anchor, restored scroll position, or a fast fling) lands on
+    // the milestone that matches the reader's actual position.
+    const sync = (self: ScrollTrigger) => {
+      section.style.setProperty('--career-progress', self.progress.toFixed(4))
+
+      const raw = self.progress * slides.length
+      const index = Math.min(slides.length - 1, Math.max(0, Math.floor(raw)))
+      const local = Math.min(1, Math.max(0, raw - index))
+
+      // Drift the active photograph inside its mask as its own milestone is
+      // crossed. Each slide keeps its own offset, so the outgoing image does not
+      // jump when the next one takes over.
+      slides[index]?.style.setProperty(
+        '--career-drift',
+        `${((0.5 - local) * 18).toFixed(2)}px`,
+      )
+
+      activate(index, self.direction || 1)
+    }
+
+    const trigger = ScrollTrigger.create({
+      trigger: section,
+      start: () => `top ${navHeight}px`,
+      end: 'bottom bottom',
+      invalidateOnRefresh: true,
+      onUpdate: sync,
+      onEnter: sync,
+      onEnterBack: sync,
+      onLeave: sync,
+      onLeaveBack: sync,
+    })
+
+    return () => {
+      trigger.kill()
+      cancelTyping()
+      slides.forEach((slide) => {
+        slide.classList.remove('is-active')
+        slide.removeAttribute('aria-hidden')
+        slide.style.removeProperty('--career-drift')
+      })
+      section.style.removeProperty('--career-progress')
+
+      typed.forEach((items) => {
+        items.forEach((item) => {
+          item.live.textContent = item.full
+        })
+      })
+    }
   })
 }
 

@@ -2,22 +2,20 @@
   /* The reveal states are applied by GSAP only when JavaScript runs, so the
      page renders complete and readable without it. */
 
-  .spine {
-    transform-origin: top center;
-  }
-
-  html.is-loaded .spine {
-    will-change: transform;
-  }
-
   .hero__portrait {
     transform-origin: bottom center;
+  }
+
+  html.is-motion .career__slide.is-active .career__frame img {
+    will-change: transform;
   }
 
   @media (prefers-reduced-motion: reduce) {
     .strip__item,
     .strip__item img,
-    .media__item,
+    .career__slide,
+    .career__frame img,
+    .career__dot span,
     .hero__portrait img,
     .btn,
     .link-arrow,
@@ -36,10 +34,6 @@
     .strip__item:hover img,
     .strip__item:focus-visible img {
       transform: none;
-    }
-
-    .media__item {
-      transition: none;
     }
 
     .stage__slide,

@@ -43,12 +43,12 @@
     "mahindra-hq": {
       "source": "Assets/Mahindra-Mahindra.jpg",
       "base": "mahindra-hq",
-      "widths": [800, 1200]
+      "widths": [800, 1200, 1600]
     },
     "mahindra-chennai": {
       "source": "Assets/mandmchennai.jpg",
       "base": "mahindra-chennai",
-      "widths": [800, 1200]
+      "widths": [800, 1200, 1600]
     },
     "tata-gate": {
       "source": "Assets/Tatamotorgate.webp",
