@@ -59,11 +59,12 @@ Changing a source image or `media.config.json` means running `npm run media`
 
 - Motion is an enhancement. `prefers-reduced-motion: reduce` skips the motion
   chunk entirely and shows the finished composition.
-- The career section is the one scroll set piece. On desktop the stage locks
-  under the header while the reader crosses it, crossfading one milestone at a
+- On desktop each section holds under the header for a short beat before
+  releasing into the next one. The career section is the long-form set piece:
+  the stage locks while the reader crosses it, crossfading one milestone at a
   time with typed copy and a drifting photograph; on mobile it becomes a
-  swipeable, snap-to-card rail with indicator dots. Without the motion chunk it
-  falls back to the full stacked list of milestones.
+  swipeable, snap-to-card rail with indicator dots. Without the motion chunk
+  every section falls back to its full static stack.
 - With JavaScript disabled the page is complete: the hero wordmark is set in
   CSS exactly as it renders, the mobile menu is a native `<details>`, and every
   section is present in the static HTML.

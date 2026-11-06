@@ -24,6 +24,7 @@
     --wrap: 1280px;
     --pad: clamp(20px, 3.4vw, 48px);
     --section-y: clamp(96px, 11vw, 160px);
+    --section-hold: clamp(96px, 18svh, 180px);
     --gap: clamp(24px, 3vw, 48px);
 
     /* motion */

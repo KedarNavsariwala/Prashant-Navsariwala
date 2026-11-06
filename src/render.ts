@@ -264,50 +264,54 @@ function renderHero() {
 /* ------------------------------------------------------------------ */
 
 function renderAbout() {
-  return `<section class="section about" id="about" aria-labelledby="about-title">
-      <div class="wrap">
-        <div class="section-head" data-reveal>
-          <p class="eyebrow">${esc(about.eyebrow)}</p>
-          <h2 class="about__heading" id="about-title">${esc(about.heading)}</h2>
-        </div>
-
-        <div class="about__grid">
-          <div class="about__body" data-reveal>
-            <p class="about__lede">${esc(about.lede)}</p>
-            <ul class="about__skills" aria-label="Top skills">
-              ${about.skills.map((skill) => `<li>${esc(skill)}</li>`).join('')}
-            </ul>
+  return `<section class="section about section--sticky" id="about" aria-labelledby="about-title">
+      <div class="section__pin">
+        <div class="wrap">
+          <div class="section-head" data-reveal>
+            <p class="eyebrow">${esc(about.eyebrow)}</p>
+            <h2 class="about__heading" id="about-title">${esc(about.heading)}</h2>
           </div>
 
-          <dl class="disciplines" data-reveal>
-            ${about.disciplines
-              .map(
-                (item) => `<div class="discipline">
-              <dt><span class="discipline__value">${esc(item.value)}</span> <span class="discipline__unit">${esc(item.unit)}</span></dt>
-              <dd>${esc(item.label)}</dd>
-            </div>`,
-              )
-              .join('')}
-          </dl>
+          <div class="about__grid">
+            <div class="about__body" data-reveal>
+              <p class="about__lede">${esc(about.lede)}</p>
+              <ul class="about__skills" aria-label="Top skills">
+                ${about.skills.map((skill) => `<li>${esc(skill)}</li>`).join('')}
+              </ul>
+            </div>
+
+            <dl class="disciplines" data-reveal>
+              ${about.disciplines
+                .map(
+                  (item) => `<div class="discipline">
+                <dt><span class="discipline__value">${esc(item.value)}</span> <span class="discipline__unit">${esc(item.unit)}</span></dt>
+                <dd>${esc(item.label)}</dd>
+              </div>`,
+                )
+                .join('')}
+            </dl>
+          </div>
         </div>
       </div>
     </section>`
 }
 
 function renderImpact() {
-  return `<section class="impact" id="impact" aria-labelledby="impact-title">
-      <div class="wrap">
-        <h2 class="sr-only" id="impact-title">${esc(impact.heading)}</h2>
-        <ul class="impact__grid" data-reveal-group>
-          ${impact.items
-            .map(
-              (item, index) => `<li class="impact__item" style="--i:${index}">
-            <p class="impact__figure"><span aria-hidden="true" data-count="${item.value}">${item.value}</span><span class="sr-only">${item.value}</span><span class="impact__suffix" aria-hidden="true">${item.suffix}</span></p>
-            <p class="impact__caption">${esc(item.caption)}</p>
-          </li>`,
-            )
-            .join('')}
-        </ul>
+  return `<section class="impact section--sticky" id="impact" aria-labelledby="impact-title">
+      <div class="section__pin">
+        <div class="wrap">
+          <h2 class="sr-only" id="impact-title">${esc(impact.heading)}</h2>
+          <ul class="impact__grid" data-reveal-group>
+            ${impact.items
+              .map(
+                (item, index) => `<li class="impact__item" style="--i:${index}">
+              <p class="impact__figure"><span aria-hidden="true" data-count="${item.value}">${item.value}</span><span class="sr-only">${item.value}</span><span class="impact__suffix" aria-hidden="true">${item.suffix}</span></p>
+              <p class="impact__caption">${esc(item.caption)}</p>
+            </li>`,
+              )
+              .join('')}
+          </ul>
+        </div>
       </div>
     </section>`
 }
@@ -367,22 +371,24 @@ function renderStrip() {
 }
 
 function renderWork() {
-  return `<section class="work" id="work" aria-labelledby="work-title">
-      <div class="wrap work__head" data-reveal>
-        <div class="work__intro">
-          <p class="eyebrow">${esc(work.eyebrow)}</p>
-          <h2 id="work-title">${esc(work.heading)}</h2>
-          <p class="work__note">${esc(work.note)}</p>
+  return `<section class="work section--sticky" id="work" aria-labelledby="work-title">
+      <div class="section__pin">
+        <div class="wrap work__head" data-reveal>
+          <div class="work__intro">
+            <p class="eyebrow">${esc(work.eyebrow)}</p>
+            <h2 id="work-title">${esc(work.heading)}</h2>
+            <p class="work__note">${esc(work.note)}</p>
+          </div>
+          <p class="work__counter" aria-hidden="true"><span data-index>01</span><span class="work__counter-sep">/</span><span>${String(vehicles.length).padStart(2, '0')}</span></p>
         </div>
-        <p class="work__counter" aria-hidden="true"><span data-index>01</span><span class="work__counter-sep">/</span><span>${String(vehicles.length).padStart(2, '0')}</span></p>
-      </div>
 
-      <div class="wrap work__body">
-        ${renderStage()}
-        ${renderSpec(0)}
-      </div>
+        <div class="wrap work__body">
+          ${renderStage()}
+          ${renderSpec(0)}
+        </div>
 
-      ${renderStrip()}
+        ${renderStrip()}
+      </div>
     </section>`
 }
 
@@ -469,59 +475,63 @@ function renderCareer() {
 /* ------------------------------------------------------------------ */
 
 function renderPatent() {
-  return `<section class="section patent" id="patent" aria-labelledby="patent-title">
-      <div class="wrap patent__inner">
-        <figure class="patent__figure" data-magnet aria-hidden="true">
-          ${picture('patent', {
-            alt: '',
-            sizes: '(min-width: 900px) 38vw, 1px',
-            className: 'patent__picture',
-          })}
-        </figure>
+  return `<section class="section patent section--sticky" id="patent" aria-labelledby="patent-title">
+      <div class="section__pin">
+        <div class="wrap patent__inner">
+          <figure class="patent__figure" data-magnet aria-hidden="true">
+            ${picture('patent', {
+              alt: '',
+              sizes: '(min-width: 900px) 38vw, 1px',
+              className: 'patent__picture',
+            })}
+          </figure>
 
-        <div class="patent__text">
-          <p class="eyebrow" data-reveal>${esc(patent.eyebrow)}</p>
-          <h2 class="patent__title" id="patent-title" data-reveal>${esc(patent.title)}</h2>
-          <p class="patent__meta" data-reveal>
-            <span class="patent__number">${esc(patent.number)}</span>
-            <span class="patent__dot" aria-hidden="true">·</span>
-            <time datetime="${patent.datetime}">${esc(patent.date)}</time>
-          </p>
-          <p class="patent__note" data-reveal>${esc(patent.note)}</p>
+          <div class="patent__text">
+            <p class="eyebrow" data-reveal>${esc(patent.eyebrow)}</p>
+            <h2 class="patent__title" id="patent-title" data-reveal>${esc(patent.title)}</h2>
+            <p class="patent__meta" data-reveal>
+              <span class="patent__number">${esc(patent.number)}</span>
+              <span class="patent__dot" aria-hidden="true">·</span>
+              <time datetime="${patent.datetime}">${esc(patent.date)}</time>
+            </p>
+            <p class="patent__note" data-reveal>${esc(patent.note)}</p>
+          </div>
         </div>
       </div>
     </section>`
 }
 
 function renderCredentials() {
-  return `<section class="section credentials" id="credentials" aria-labelledby="credentials-title">
-      <div class="wrap">
-        <div class="section-head" data-reveal>
-          <p class="eyebrow">${esc(credentials.eyebrow)}</p>
-          <h2 id="credentials-title">${esc(credentials.heading)}</h2>
-        </div>
-
-        <div class="cred__grid">
-          <div class="cred__block" data-reveal>
-            <h3 class="cred__label">Certifications</h3>
-            <ul class="cert-list">
-              ${credentials.certifications.map((item) => `<li>${esc(item)}</li>`).join('')}
-            </ul>
+  return `<section class="section credentials section--sticky" id="credentials" aria-labelledby="credentials-title">
+      <div class="section__pin">
+        <div class="wrap">
+          <div class="section-head" data-reveal>
+            <p class="eyebrow">${esc(credentials.eyebrow)}</p>
+            <h2 id="credentials-title">${esc(credentials.heading)}</h2>
           </div>
 
-          <div class="cred__block" data-reveal>
-            <h3 class="cred__label">Education</h3>
-            <ul class="edu-list">
-              ${credentials.education
-                .map(
-                  (entry) => `<li class="edu">
-                <p class="edu__qual">${esc(entry.qualification)}</p>
-                <p class="edu__inst">${esc(entry.institution)}</p>
-                <p class="edu__years">${esc(entry.years)}</p>
-              </li>`,
-                )
-                .join('')}
-            </ul>
+          <div class="cred__grid">
+            <div class="cred__block" data-reveal>
+              <h3 class="cred__label">Certifications</h3>
+              <ul class="cert-list">
+                ${credentials.certifications.map((item) => `<li>${esc(item)}</li>`).join('')}
+              </ul>
+            </div>
+
+            <div class="cred__block" data-reveal>
+              <h3 class="cred__label">Education</h3>
+              <ul class="edu-list">
+                ${credentials.education
+                  .map(
+                    (entry) => `<li class="edu">
+                  <p class="edu__qual">${esc(entry.qualification)}</p>
+                  <p class="edu__inst">${esc(entry.institution)}</p>
+                  <p class="edu__years">${esc(entry.years)}</p>
+                </li>`,
+                  )
+                  .join('')}
+              </ul>
+            </div>
           </div>
         </div>
       </div>

@@ -10,6 +10,46 @@
     will-change: transform;
   }
 
+  /* Each major section pauses under the header for a short beat, then releases
+     into the next one. The pin's content is a full viewport tall, while the
+     section's ::after supplies the extra scroll distance. */
+  @media (min-width: 900px) {
+    html.is-motion .section--sticky {
+      display: block;
+      min-height: 0;
+      padding-block: 0;
+    }
+
+    html.is-motion .section--sticky::after {
+      content: '';
+      display: block;
+      height: var(--section-hold);
+    }
+
+    html.is-motion .section--sticky > .section__pin {
+      position: sticky;
+      top: var(--nav-h);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      justify-content: safe center;
+      width: 100%;
+      min-height: calc(100svh - var(--nav-h));
+      padding-block: clamp(16px, 2.6svh, 40px);
+      /* Carry the section's own surface (the patent grid, the impact band) so
+         it stays put with the content instead of sliding underneath it. */
+      background: inherit;
+    }
+
+    /* The showroom already fills its viewport: keep its head at the top and
+       let the body take the remaining height, exactly as it did unpinned. */
+    html.is-motion .work.section--sticky > .section__pin {
+      justify-content: flex-start;
+      padding-block: 0;
+      padding-top: clamp(24px, 4svh, 56px);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .strip__item,
     .strip__item img,

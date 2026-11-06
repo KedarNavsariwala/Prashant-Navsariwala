@@ -10,6 +10,12 @@
     padding-block: var(--section-y);
   }
 
+  /* The wrapper is inert until the motion chunk opts into the sticky hold, so
+     without JavaScript the wrapper's children lay out exactly as before. */
+  .section__pin {
+    display: contents;
+  }
+
   /* Nav-linked sections fill the space under the fixed header, so an anchor
      jump reveals the whole section in one screen. Career is intentionally
      taller: it is the one section built to be scrolled through. */
